@@ -7,12 +7,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
+import com.hgshkt.chatproject.presentation.navigation.SecurityScreen
+import com.hgshkt.chatproject.presentation.screens.security.LinkToLoginScreen
 import com.hgshkt.chatproject.presentation.screens.security.LoginField
 import com.hgshkt.chatproject.presentation.screens.security.PasswordField
 import com.hgshkt.chatproject.presentation.screens.security.SubmitButton
 
 @Composable
 fun RegistrationScreen(
+    navController: NavController,
     modifier: Modifier = Modifier
 ) {
     var login by remember { mutableStateOf("") }
@@ -28,6 +32,9 @@ fun RegistrationScreen(
             Spacer(modifier = Modifier.height(10.dp))
             SubmitButton(text = "Registration") {
                 // viewModel.register()
+            }
+            LinkToLoginScreen {
+                navController.navigate(SecurityScreen.Registration.route)
             }
         }
     }

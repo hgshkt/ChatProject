@@ -1,5 +1,6 @@
 package com.hgshkt.chatproject.presentation.screens.security
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.Button
 import androidx.compose.material.Text
@@ -63,4 +64,30 @@ fun SubmitButton(
     ) {
         Text(text)
     }
+}
+
+var linkToRegText = "To registration screen"
+
+@Composable
+fun LinkToRegScreen(
+    text: String = linkToRegText,
+    modifier: Modifier = Modifier,
+    onCLick: () -> Unit
+) {
+    Text(text, modifier = modifier.clickable {
+        onCLick()
+    })
+}
+
+var linkToLoginText = "To login screen"
+
+@Composable
+fun LinkToLoginScreen(
+    text: String = linkToLoginText,
+    modifier: Modifier = Modifier,
+    onCLick: () -> Unit
+) {
+    Text(text, modifier = modifier.clickable {
+        onCLick()
+    })
 }
