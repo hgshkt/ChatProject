@@ -1,4 +1,4 @@
-package com.hgshkt.chatproject.presentation.screens.login
+package com.hgshkt.chatproject.presentation.screens.security.login
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardOptions
@@ -13,6 +13,9 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.hgshkt.chatproject.presentation.screens.security.LoginField
+import com.hgshkt.chatproject.presentation.screens.security.PasswordField
+import com.hgshkt.chatproject.presentation.screens.security.SubmitButton
 
 @Composable
 fun LoginScreen(
@@ -44,61 +47,6 @@ fun LoginScreen(
                 // viewModel.login()
             }
         }
-    }
-}
-
-@Composable
-fun LoginField(
-    value: String,
-    onValueChange: (String) -> Unit,
-    modifier: Modifier = Modifier,
-    label: String = "Login",
-    placeholder: String = "Enter login"
-) {
-    TextField(
-        value = value,
-        onValueChange = onValueChange,
-        modifier = modifier,
-        label = { Text(label) },
-        placeholder = { Text(placeholder) },
-        singleLine = true
-    )
-}
-
-@Composable
-fun PasswordField(
-    value: String,
-    onValueChange: (String) -> Unit,
-    modifier: Modifier = Modifier,
-    label: String = "Password",
-    placeholder: String = "Enter password"
-) {
-    TextField(
-        value = value,
-        onValueChange = onValueChange,
-        modifier = modifier,
-        label = { Text(label) },
-        placeholder = { Text(placeholder) },
-        singleLine = true,
-        keyboardOptions = KeyboardOptions(
-            imeAction = ImeAction.Done,
-            keyboardType = KeyboardType.Password
-        ),
-        visualTransformation = PasswordVisualTransformation()
-    )
-}
-
-@Composable
-fun SubmitButton(
-    modifier: Modifier = Modifier,
-    text: String = "Submit",
-    onCLick: () -> Unit = {}
-) {
-    Button(
-        modifier = modifier,
-        onClick = onCLick
-    ) {
-        Text(text)
     }
 }
 

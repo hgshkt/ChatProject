@@ -1,4 +1,4 @@
-package com.hgshkt.chatproject.presentation.screens.login
+package com.hgshkt.chatproject.presentation.screens.security.login
 
 import androidx.lifecycle.ViewModel
 import com.hgshkt.chatproject.domain.data.security.LoginService
