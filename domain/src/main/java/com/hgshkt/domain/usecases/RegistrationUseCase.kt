@@ -1,7 +1,7 @@
-package com.hgshkt.chatproject.domain.usecases
+package com.hgshkt.domain.usecases
 
-import com.hgshkt.chatproject.domain.data.security.RegistrationService
-import com.hgshkt.chatproject.domain.data.security.RegistrationService.RegistrationData
+import com.hgshkt.domain.security.RegistrationService
+import com.hgshkt.domain.security.RegistrationService.RegistrationData
 
 class RegistrationUseCase(
     private val registrationService: RegistrationService

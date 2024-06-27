@@ -1,17 +1,17 @@
 package com.hgshkt.chatproject.presentation.screens.security.login
 
 import androidx.lifecycle.ViewModel
-import com.hgshkt.chatproject.domain.data.security.LoginService
-import com.hgshkt.chatproject.domain.usecases.LoginUseCase
+import com.hgshkt.domain.security.LoginService
+import com.hgshkt.domain.usecases.LoginUseCase
 
 class LoginViewModel(
-    private val loginUseCase: LoginUseCase
+    private val loginUseCase: com.hgshkt.domain.usecases.LoginUseCase
 ): ViewModel() {
     fun login(
         login: String,
         password: String
     ) {
-        val data = LoginService.LoginData.LoginPassword(
+        val data = com.hgshkt.domain.security.LoginService.LoginData.LoginPassword(
             login = login,
             password = password
         )

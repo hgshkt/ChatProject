@@ -1,4 +1,4 @@
-package com.hgshkt.chatproject.domain.data.security
+package com.hgshkt.domain.security
 
 interface LoginService {
     fun login(loginData: LoginData)
