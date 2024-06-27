@@ -15,6 +15,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.hgshkt.chatproject.presentation.navigation.Screen
@@ -26,10 +27,12 @@ import com.hgshkt.chatproject.presentation.screens.security.SubmitButton
 @Composable
 fun RegistrationScreen(
     navController: NavController,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    viewModel: RegistrationViewModel = hiltViewModel()
 ) {
     var login by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
+
     Box(modifier = modifier) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
@@ -40,7 +43,7 @@ fun RegistrationScreen(
             PasswordField(value = password, onValueChange = { password = it })
             Spacer(modifier = Modifier.height(10.dp))
             SubmitButton(text = "Registration") {
-                // viewModel.register()
+                viewModel.register(login, password)
             }
             LinkToLoginScreen {
                 navController.navigate(Screen.Security.Login.route)

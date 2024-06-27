@@ -55,7 +55,11 @@ fun LoginScreen(
             )
             Spacer(modifier = Modifier.height(10.dp))
             SubmitButton {
-                // viewModel.login()
+                viewModel.login(
+                    login = login,
+                    password = password
+                )
+                navController.navigate(Screen.Main.route)
             }
             LinkToRegScreen {
                 navController.navigate(Screen.Security.Registration.route)
