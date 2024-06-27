@@ -8,6 +8,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.hgshkt.chatproject.presentation.navigation.SecurityScreen
 import com.hgshkt.chatproject.presentation.screens.security.LinkToLoginScreen
 import com.hgshkt.chatproject.presentation.screens.security.LoginField
@@ -43,5 +44,6 @@ fun RegistrationScreen(
 @Preview
 @Composable
 fun RegistrationScreenPreview() {
-    RegistrationScreen()
+    val controller = rememberNavController()
+    RegistrationScreen(controller)
 }
