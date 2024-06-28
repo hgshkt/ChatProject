@@ -8,7 +8,7 @@ import okhttp3.WebSocketListener
 class WebSocketConnector(
     private val client: OkHttpClient
 ) {
-    private fun connectWebSocket(
+    fun connectWebSocket(
         url: String,
         handle: (String) -> Unit
     ): WebSocket {
