@@ -1,7 +1,7 @@
 package com.hgshkt.domain.usecases
 
-import com.hgshkt.domain.data.UserId
-import com.hgshkt.domain.data.UserRepository
+import com.hgshkt.domain.data.repository.UserId
+import com.hgshkt.domain.data.repository.UserRepository
 import com.hgshkt.domain.model.User
 
 class GetUserByIdUseCase(

@@ -1,6 +1,6 @@
 package com.hgshkt.domain.model
 
-import com.hgshkt.domain.data.UserId
+import com.hgshkt.domain.data.repository.UserId
 
 data class User(
     val id: UserId,

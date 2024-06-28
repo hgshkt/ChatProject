@@ -1,4 +1,4 @@
-package com.hgshkt.domain.data
+package com.hgshkt.domain.data.repository
 
 import com.hgshkt.domain.usecases.GetUserByIdResponse
 
