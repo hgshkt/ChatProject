@@ -1,6 +1,7 @@
 package com.hgshkt.domain.data.repository
 
 import com.hgshkt.domain.model.User
+import com.hgshkt.domain.model.UserId
 
 interface UserRepository {
     suspend fun getUserById(id: UserId): GetUserByIdResponse
@@ -22,8 +23,4 @@ interface UserRepository {
             value = null
         )
     }
-
-    data class UserId(
-        val value: String
-    )
 }
