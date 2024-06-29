@@ -6,7 +6,7 @@ import com.hgshkt.domain.security.LoginService.LoginData
 class LoginUseCase(
     private val loginService: LoginService
 ) {
-    fun execute(loginData: LoginData) {
+    suspend fun execute(loginData: LoginData) {
         loginService.login(loginData)
     }
 }
