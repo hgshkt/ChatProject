@@ -9,4 +9,6 @@ interface WebSocketListener {
     fun handleNewChat(chat: Chat)
 
     fun handleNewMessage(message: Message)
+
+    fun close()
 }
