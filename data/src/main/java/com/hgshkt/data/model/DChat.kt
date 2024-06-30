@@ -1,6 +1,6 @@
-package com.hgshkt.domain.model
+package com.hgshkt.data.model
 
-data class User(
+data class DChat(
     val id: String,
     val name: String,
     val avatarUrl: String
