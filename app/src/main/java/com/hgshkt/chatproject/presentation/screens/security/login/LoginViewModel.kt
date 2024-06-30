@@ -1,20 +1,27 @@
 package com.hgshkt.chatproject.presentation.screens.security.login
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.hgshkt.domain.security.LoginService
 import com.hgshkt.domain.usecases.LoginUseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class LoginViewModel(
-    private val loginUseCase: com.hgshkt.domain.usecases.LoginUseCase
+@HiltViewModel
+class LoginViewModel @Inject constructor(
+    private val loginUseCase: LoginUseCase
 ): ViewModel() {
     fun login(
         login: String,
         password: String
     ) {
-        val data = com.hgshkt.domain.security.LoginService.LoginData.LoginPassword(
+        val data = LoginService.LoginData.LoginPassword(
             login = login,
             password = password
         )
-        loginUseCase.execute(data)
+        viewModelScope.launch {
+            loginUseCase.execute(data)
+        }
     }
 }

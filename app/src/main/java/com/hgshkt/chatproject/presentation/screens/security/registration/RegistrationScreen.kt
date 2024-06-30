@@ -21,6 +21,7 @@ import androidx.navigation.compose.rememberNavController
 import com.hgshkt.chatproject.presentation.navigation.Screen
 import com.hgshkt.chatproject.presentation.screens.security.LinkToLoginScreen
 import com.hgshkt.chatproject.presentation.screens.security.LoginField
+import com.hgshkt.chatproject.presentation.screens.security.NameField
 import com.hgshkt.chatproject.presentation.screens.security.PasswordField
 import com.hgshkt.chatproject.presentation.screens.security.SubmitButton
 
@@ -30,6 +31,7 @@ fun RegistrationScreen(
     modifier: Modifier = Modifier,
     viewModel: RegistrationViewModel = hiltViewModel()
 ) {
+    var name by remember { mutableStateOf("") }
     var login by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
 
@@ -39,11 +41,12 @@ fun RegistrationScreen(
             verticalArrangement = Arrangement.Center,
             modifier = Modifier.fillMaxSize()
         ) {
+            NameField(value = name, onValueChange = { name = it })
             LoginField(value = login, onValueChange = { login = it })
             PasswordField(value = password, onValueChange = { password = it })
             Spacer(modifier = Modifier.height(10.dp))
             SubmitButton(text = "Registration") {
-                viewModel.register(login, password)
+                viewModel.register(name, login, password)
             }
             LinkToLoginScreen {
                 navController.navigate(Screen.Security.Login.route)

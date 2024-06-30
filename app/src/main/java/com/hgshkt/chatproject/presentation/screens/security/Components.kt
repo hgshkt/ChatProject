@@ -53,6 +53,24 @@ fun PasswordField(
 }
 
 @Composable
+fun NameField(
+    value: String,
+    onValueChange: (String) -> Unit,
+    modifier: Modifier = Modifier,
+    label: String = "Name",
+    placeholder: String = "Enter name"
+) {
+    TextField(
+        value = value,
+        onValueChange = onValueChange,
+        modifier = modifier,
+        label = { Text(label) },
+        placeholder = { Text(placeholder) },
+        singleLine = true
+    )
+}
+
+@Composable
 fun SubmitButton(
     modifier: Modifier = Modifier,
     text: String = "Submit",
