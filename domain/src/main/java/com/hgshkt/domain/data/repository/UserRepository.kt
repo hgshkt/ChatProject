@@ -5,6 +5,7 @@ import com.hgshkt.domain.model.UserId
 
 interface UserRepository {
     suspend fun getUserById(id: UserId): GetUserByIdResponse
+    fun getCurrentUserId(): UserId
 
     sealed class GetUserByIdResponse(
         val success: Boolean,
