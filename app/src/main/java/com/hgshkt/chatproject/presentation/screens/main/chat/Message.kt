@@ -10,10 +10,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import com.hgshkt.chatproject.presentation.model.UiMessage
 
 @Composable
 fun OutputMessage(
-    message: MessageUiModel,
+    message: UiMessage,
     modifier: Modifier = Modifier
 ) {
     Box(
@@ -26,7 +27,7 @@ fun OutputMessage(
 
 @Composable
 fun InputMessage(
-    message: MessageUiModel,
+    message: UiMessage,
     modifier: Modifier = Modifier
 ) {
     Box(
@@ -39,7 +40,7 @@ fun InputMessage(
 
 @Composable
 fun Message(
-    message: MessageUiModel
+    message: UiMessage
 ) {
     Box(
         modifier = Modifier

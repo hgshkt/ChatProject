@@ -11,10 +11,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.unit.dp
+import com.hgshkt.chatproject.presentation.model.UiChat
 
 @Composable
 fun ChatItem(
-    chat: ChatListUiModel
+    chat: UiChat
 ) {
     Row(
         modifier = Modifier.padding(12.dp),
