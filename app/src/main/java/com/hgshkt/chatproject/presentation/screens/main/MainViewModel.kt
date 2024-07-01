@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.hgshkt.chatproject.presentation.model.UiChat
 import com.hgshkt.domain.data.websocket.WebSocketListener
+import com.hgshkt.domain.data.websocket.WebSocketManager
 import com.hgshkt.domain.model.Chat
 import com.hgshkt.domain.model.Message
 import com.hgshkt.domain.usecases.ConnectWebSocketUseCase
@@ -13,7 +14,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
-    private val connectWebSocketUseCase: ConnectWebSocketUseCase
+    private val connectWebSocketUseCase: ConnectWebSocketUseCase,
+    private val webSocketManager: WebSocketManager
 ): ViewModel() {
 
     val chats: MutableList<UiChat> = mutableListOf()

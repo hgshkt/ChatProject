@@ -15,6 +15,7 @@ class WebSocketHandlerImpl(
 
     private val url = ""
 
+
     override fun connectWebSocket(webSocketListener: WebSocketListener) {
         connector.connectWebSocket(url) { jsonMessage ->
             Gson().fromJson(jsonMessage, JsonMessage::class.java)
@@ -26,6 +27,10 @@ class WebSocketHandlerImpl(
                     }
                 }
         }
+    }
+
+    override fun closeWebSocket() {
+        connector.closeWebSocket()
     }
 
     private fun JsonMessage.getMessage(): Message {

@@ -1,4 +1,4 @@
-package com.hgshkt.chatproject.presentation
+package com.hgshkt.chatproject.presentation.data
 
 import com.hgshkt.chatproject.presentation.model.UiChat
 import com.hgshkt.chatproject.presentation.model.UiMessage

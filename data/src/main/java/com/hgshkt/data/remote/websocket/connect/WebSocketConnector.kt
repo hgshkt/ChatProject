@@ -8,6 +8,8 @@ import okhttp3.WebSocketListener
 class WebSocketConnector(
     private val client: OkHttpClient
 ) {
+    private lateinit var webSocket: WebSocket
+
     fun connectWebSocket(
         url: String,
         handle: (String) -> Unit
@@ -16,7 +18,7 @@ class WebSocketConnector(
                 .url(url)
                 .build()
 
-        val webSocket = client.newWebSocket(request, object : WebSocketListener() {
+        webSocket = client.newWebSocket(request, object : WebSocketListener() {
             override fun onMessage(webSocket: WebSocket, text: String) {
                 super.onMessage(webSocket, text)
 
@@ -31,5 +33,9 @@ class WebSocketConnector(
         client.dispatcher.executorService.shutdown()
 
         return webSocket
+    }
+
+    fun closeWebSocket(){
+        webSocket.close(1000, null)
     }
 }
