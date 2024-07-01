@@ -14,7 +14,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class CHatListViewModel @Inject constructor(
+class ChatListViewModel @Inject constructor(
     private val webSocketManager: WebSocketManager
 ): ViewModel() {
 
@@ -43,4 +43,8 @@ class CHatListViewModel @Inject constructor(
         }
     }
 
+    override fun onCleared() {
+        super.onCleared()
+        webSocketManager.close()
+    }
 }
