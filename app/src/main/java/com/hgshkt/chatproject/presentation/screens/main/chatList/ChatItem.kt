@@ -39,7 +39,7 @@ fun ChatAvatar(
         modifier = modifier,
         error = painterResource(R.drawable.avatar_error),
         placeholder = painterResource(R.drawable.loading_avatar),
-        fallback = painterResource(R.drawable.default_avatar)
+        fallback = painterResource(R.drawable.default_chat_avatar)
     )
 }
 
