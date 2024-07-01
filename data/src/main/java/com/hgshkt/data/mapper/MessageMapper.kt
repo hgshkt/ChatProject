@@ -22,7 +22,7 @@ fun StorageMessage.toDomain(): Message {
         authorId = authorId,
         chatId = chatId,
         authorName = authorName,
-        avatarUrl = avatarUrl,
+        avatarUrl = avatarUrl ?: "avatar url is null",
         text = text
     )
 }

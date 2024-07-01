@@ -3,7 +3,7 @@ package com.hgshkt.data.storage.message.interfaces
 import com.hgshkt.data.storage.message.model.StorageMessage
 
 interface MessageStorage {
-    fun getMessagesByChatId(chatId: String): MessageStorageResponse
+    suspend fun getMessagesByChatId(chatId: String): MessageStorageResponse
 
     fun sendMessage(chatId: String, text: String, userId: String)
 
