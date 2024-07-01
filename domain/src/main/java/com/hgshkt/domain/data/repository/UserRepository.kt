@@ -1,11 +1,10 @@
 package com.hgshkt.domain.data.repository
 
 import com.hgshkt.domain.model.User
-import com.hgshkt.domain.model.UserId
 
 interface UserRepository {
-    suspend fun getUserById(id: UserId): GetUserByIdResponse
-    fun getCurrentUserId(): UserId
+    suspend fun getUserById(id: String): GetUserByIdResponse
+    fun getCurrentUserId(): String
 
     sealed class GetUserByIdResponse(
         val success: Boolean,

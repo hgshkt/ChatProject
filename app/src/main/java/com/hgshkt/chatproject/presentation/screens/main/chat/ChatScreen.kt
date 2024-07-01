@@ -2,6 +2,7 @@ package com.hgshkt.chatproject.presentation.screens.main.chat
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -18,15 +19,19 @@ import com.hgshkt.chatproject.R
 @Composable
 fun ChatScreen(
     modifier: Modifier = Modifier,
-    viewModel: ChatViewModel = hiltViewModel()
+    viewModel: ChatViewModel = hiltViewModel(),
+    chatId: String
 ) {
-    Column(
-        modifier = Modifier.fillMaxSize()
-    ) {
-        MessageList()
-        MessageInput {
-            // viewModel.sendMessage(it)
+    Box(modifier = modifier) {
+        Column(modifier = Modifier.fillMaxSize()) {
+            MessageList()
+            MessageInput {
+                viewModel.sendMessage(it)
+            }
         }
+    }
+    LaunchedEffect(key1 = "fetch chat") {
+        viewModel.fetchChat(chatId)
     }
 }
 

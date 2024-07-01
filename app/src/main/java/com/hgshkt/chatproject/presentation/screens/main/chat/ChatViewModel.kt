@@ -19,6 +19,9 @@ class ChatViewModel @Inject constructor(
     private val webSocketManager: WebSocketManager
 ): ViewModel() {
 
+    private val _chat = MutableLiveData<UiChat>()
+    val chat = _chat
+
     private val _messages = MutableLiveData<MutableList<UiMessage>>(mutableListOf())
     val messages = _messages
 
@@ -32,10 +35,21 @@ class ChatViewModel @Inject constructor(
                 override fun handleNewChat(chat: Chat) {}
 
                 override fun handleNewMessage(message: Message) {
+                    if(message.chatId == chatId)
                     _messages.value!!.add(message.toUI())
                 }
             }
             webSocketManager.open(listener)
+        }
+    }
+
+    fun sendMessage(text: String) {
+
+    }
+
+    fun fetchChat(id: String) {
+        viewModelScope.launch {
+
         }
     }
 }

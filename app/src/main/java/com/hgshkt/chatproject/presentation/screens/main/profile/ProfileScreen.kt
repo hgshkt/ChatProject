@@ -39,7 +39,7 @@ fun ProfileScreen(
             }
         }
     }
-    LaunchedEffect(key1 = "") {
+    LaunchedEffect(key1 = "fetch user") {
         viewModel.fetchUser(id)
     }
 }
