@@ -1,16 +1,16 @@
 package com.hgshkt.data.storage.interfaces
 
-import com.hgshkt.data.remote.api.user.model.JsonUser
+import com.hgshkt.data.storage.model.StorageUser
 
 interface RemoteUserStorage {
-    fun getUserById(): RemoteUserStorageResponse
+    suspend fun getUserById(id: String): RemoteUserStorageResponse
 
     sealed class RemoteUserStorageResponse(
         val success: Boolean,
         open val message: String,
-        open val value: JsonUser?
+        open val value: StorageUser?
     ) {
-        data class Success(val user: JsonUser) : RemoteUserStorageResponse(
+        data class Success(val user: StorageUser) : RemoteUserStorageResponse(
             success = true,
             message = "User received",
             value = user

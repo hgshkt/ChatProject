@@ -11,7 +11,7 @@ class UserRepositoryImpl(
 ): UserRepository {
 
     override suspend fun getUserById(id: String): UserRepository.GetUserByIdResponse {
-        return remoteUserStorage.getUserById().toRepositoryResponse()
+        return remoteUserStorage.getUserById(id).toRepositoryResponse()
     }
 
     override fun getCurrentUserId(): String {
