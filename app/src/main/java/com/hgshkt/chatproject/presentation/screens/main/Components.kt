@@ -29,7 +29,7 @@ fun UserAvatar(
 @Composable
 fun ProfileBackground(
     modifier: Modifier = Modifier,
-    url: String
+    url: String?
 ) {
     AsyncImage(
         model = url,

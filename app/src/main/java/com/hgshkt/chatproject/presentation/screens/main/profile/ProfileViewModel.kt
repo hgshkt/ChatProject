@@ -18,8 +18,7 @@ class ProfileViewModel @Inject constructor(
     private val _user = MutableLiveData<UiUser>(null)
     val user = _user
 
-    init {
-        val id = "id"
+    fun fetchUser(id: String) {
         viewModelScope.launch {
             val response = getUserByIdUseCase.execute(id)
             if (response.success) {
