@@ -53,6 +53,8 @@ object UseCaseModule {
         return RegistrationUseCase(registrationService)
     }
 
+    @Provides
+    @Singleton
     fun provideGetChatDetailUseCase(
         chatRepository: ChatRepository,
         messageRepository: MessageRepository
@@ -60,6 +62,8 @@ object UseCaseModule {
         return GetChatDetailUseCase(chatRepository, messageRepository)
     }
 
+    @Provides
+    @Singleton
     fun provideSendMessageUseCase(
         messageRepository: MessageRepository
     ): SendMessageUseCase {
