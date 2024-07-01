@@ -9,12 +9,16 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.hgshkt.chatproject.presentation.screens.main.ProfileBackground
 import com.hgshkt.chatproject.presentation.screens.main.ProfileUserName
 import com.hgshkt.chatproject.presentation.screens.main.UserAvatar
 
 @Composable
-fun CurrentProfileScreen() {
+fun CurrentProfileScreen(
+    modifier: Modifier = Modifier,
+    viewModel: CurrentProfileViewModel = hiltViewModel()
+) {
     val url = ""
     val name = "Name"
 

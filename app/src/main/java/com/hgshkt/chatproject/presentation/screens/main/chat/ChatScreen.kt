@@ -11,11 +11,15 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.hgshkt.chatproject.R
 
 
 @Composable
-fun ChatScreen() {
+fun ChatScreen(
+    modifier: Modifier = Modifier,
+    viewModel: ChatViewModel = hiltViewModel()
+) {
     Column(
         modifier = Modifier.fillMaxSize()
     ) {
