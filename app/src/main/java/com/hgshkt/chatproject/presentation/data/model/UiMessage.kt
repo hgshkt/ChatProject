@@ -1,4 +1,4 @@
-package com.hgshkt.chatproject.presentation.model
+package com.hgshkt.chatproject.presentation.data.model
 
 import android.graphics.Bitmap
 

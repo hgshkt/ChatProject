@@ -4,7 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.hgshkt.chatproject.presentation.data.toUI
-import com.hgshkt.chatproject.presentation.model.UiChat
+import com.hgshkt.chatproject.presentation.data.model.UiChat
 import com.hgshkt.domain.data.websocket.WebSocketListener
 import com.hgshkt.domain.data.websocket.WebSocketManager
 import com.hgshkt.domain.model.Chat

@@ -11,7 +11,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.hgshkt.chatproject.R
-import com.hgshkt.chatproject.presentation.model.UiChat
+import com.hgshkt.chatproject.presentation.data.model.UiChat
 
 @Composable
 fun ChatItem(

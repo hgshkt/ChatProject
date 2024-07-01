@@ -1,4 +1,4 @@
-package com.hgshkt.chatproject.presentation.model
+package com.hgshkt.chatproject.presentation.data.model
 
 data class UiChat(
     val id: String,

@@ -8,7 +8,7 @@ class GetUserByIdUseCase(
     private val userRepository: UserRepository
 ) {
     suspend fun execute(
-        id: UserId
+        id: String
     ): GetUserByIdResponse {
         return userRepository.getUserById(id)
     }
