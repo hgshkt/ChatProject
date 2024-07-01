@@ -22,9 +22,10 @@ fun ChatScreen(
     viewModel: ChatViewModel = hiltViewModel(),
     chatId: String
 ) {
+    val messages = viewModel.messages
     Box(modifier = modifier) {
         Column(modifier = Modifier.fillMaxSize()) {
-            MessageList()
+            MessageList(messages.value!!)
             MessageInput {
                 viewModel.sendMessage(it)
             }
@@ -37,9 +38,9 @@ fun ChatScreen(
 
 @Composable
 fun MessageInput(
-    startText: String = "",
     modifier: Modifier = Modifier,
-    onClick: (String) -> Unit,
+    startText: String = "",
+    onClick: (String) -> Unit
 ) {
     var enteredText by remember { mutableStateOf(startText) }
 

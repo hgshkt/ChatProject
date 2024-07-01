@@ -5,8 +5,9 @@ import androidx.compose.runtime.Composable
 import com.hgshkt.chatproject.presentation.data.model.UiMessage
 
 @Composable
-fun MessageList() {
-    val messages = listOf<UiMessage>()
+fun MessageList(
+    messages: MutableList<UiMessage>
+) {
     LazyColumn {
         items(messages.size) {number ->
             Message(messages[number])
