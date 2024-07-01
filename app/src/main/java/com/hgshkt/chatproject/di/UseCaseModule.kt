@@ -65,8 +65,9 @@ object UseCaseModule {
     @Provides
     @Singleton
     fun provideSendMessageUseCase(
-        messageRepository: MessageRepository
+        messageRepository: MessageRepository,
+        userRepository: UserRepository
     ): SendMessageUseCase {
-        return SendMessageUseCase(messageRepository)
+        return SendMessageUseCase(messageRepository, userRepository)
     }
 }

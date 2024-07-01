@@ -1,6 +1,6 @@
-package com.hgshkt.domain.model
+package com.hgshkt.data.remote.api.chat.model
 
-data class User(
+data class JsonChat(
     val id: String,
     val name: String,
     val avatarUrl: String?

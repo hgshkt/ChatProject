@@ -1,6 +1,6 @@
-package com.hgshkt.domain.model
+package com.hgshkt.data.storage.chat.model
 
-data class User(
+data class StorageChat(
     val id: String,
     val name: String,
     val avatarUrl: String?

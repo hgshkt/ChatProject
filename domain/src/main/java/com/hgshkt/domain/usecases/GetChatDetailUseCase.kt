@@ -11,7 +11,7 @@ class GetChatDetailUseCase(
     private val messageRepository: MessageRepository
 ) {
     private val msgError = "Messages fetching error"
-    private val chatError = "Messages fetching error"
+    private val chatError = "Chat fetching error"
 
     suspend fun execute(chatId: String): ChatDetailResponse {
         val chatResponse = chatRepository.getChat(chatId)

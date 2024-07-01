@@ -5,6 +5,6 @@ data class Message(
     val authorId: String,
     val chatId: String,
     val authorName: String,
-    val avatarUrl: String,
+    val avatarUrl: String?,
     val text: String
 )

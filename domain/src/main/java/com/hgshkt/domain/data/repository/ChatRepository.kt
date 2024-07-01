@@ -21,5 +21,7 @@ interface ChatRepository {
             message = msg,
             value = null
         )
+
+        companion object
     }
 }
