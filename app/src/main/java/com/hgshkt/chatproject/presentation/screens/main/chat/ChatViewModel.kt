@@ -10,14 +10,18 @@ import com.hgshkt.domain.data.websocket.WebSocketListener
 import com.hgshkt.domain.data.websocket.WebSocketManager
 import com.hgshkt.domain.model.Chat
 import com.hgshkt.domain.model.Message
+import com.hgshkt.domain.usecases.GetChatDetailUseCase
+import com.hgshkt.domain.usecases.SendMessageUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class ChatViewModel @Inject constructor(
-    private val webSocketManager: WebSocketManager
-): ViewModel() {
+    private val webSocketManager: WebSocketManager,
+    private val getChatDetailUseCase: GetChatDetailUseCase,
+    private val sendMessageUseCase: SendMessageUseCase
+) : ViewModel() {
 
     private val _chat = MutableLiveData<UiChat>()
     val chat = _chat
@@ -35,8 +39,8 @@ class ChatViewModel @Inject constructor(
                 override fun handleNewChat(chat: Chat) {}
 
                 override fun handleNewMessage(message: Message) {
-                    if(message.chatId == chatId)
-                    _messages.value!!.add(message.toUI())
+                    if (message.chatId == _chat.value!!.id)
+                        _messages.value!!.add(message.toUI())
                 }
             }
             webSocketManager.open(listener)
@@ -44,12 +48,18 @@ class ChatViewModel @Inject constructor(
     }
 
     fun sendMessage(text: String) {
-
+        viewModelScope.launch {
+            sendMessageUseCase.execute(_chat.value!!.id, text)
+        }
     }
 
     fun fetchChat(id: String) {
         viewModelScope.launch {
-
+            val response = getChatDetailUseCase.execute(id)
+            if (response.success) {
+                _chat.value = response.chat!!.toUI()
+                _messages.value = response.messages!!.map {it.toUI()}.toMutableList()
+            }
         }
     }
 }
