@@ -1,6 +1,6 @@
-package com.hgshkt.data.storage.interfaces
+package com.hgshkt.data.storage.user.interfaces
 
-import com.hgshkt.data.storage.model.StorageUser
+import com.hgshkt.data.storage.user.model.StorageUser
 
 interface RemoteUserStorage {
     suspend fun getUserById(id: String): RemoteUserStorageResponse

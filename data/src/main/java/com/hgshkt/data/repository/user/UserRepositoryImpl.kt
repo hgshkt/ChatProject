@@ -1,8 +1,8 @@
 package com.hgshkt.data.repository.user
 
 import com.hgshkt.data.mapper.toRepositoryResponse
-import com.hgshkt.data.storage.interfaces.LocalUserStorage
-import com.hgshkt.data.storage.interfaces.RemoteUserStorage
+import com.hgshkt.data.storage.user.interfaces.LocalUserStorage
+import com.hgshkt.data.storage.user.interfaces.RemoteUserStorage
 import com.hgshkt.domain.data.repository.UserRepository
 
 class UserRepositoryImpl(

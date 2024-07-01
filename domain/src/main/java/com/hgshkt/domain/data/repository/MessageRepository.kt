@@ -5,7 +5,10 @@ import com.hgshkt.domain.model.Message
 interface MessageRepository {
     suspend fun loadChatMessages(chatId: String): ChatMessagesResponse
 
-    suspend fun sendMessage(chatId: String, text: String)
+    /**
+     * @param userId is id of current user
+     */
+    suspend fun sendMessage(chatId: String, text: String, userId: String)
 
     sealed class ChatMessagesResponse(
         val success: Boolean,

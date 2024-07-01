@@ -1,4 +1,4 @@
-package com.hgshkt.data.storage.interfaces
+package com.hgshkt.data.storage.user.interfaces
 
 interface LocalUserStorage {
     fun getCurrentUserId(): String

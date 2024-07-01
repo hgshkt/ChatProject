@@ -1,9 +1,9 @@
 package com.hgshkt.data.mapper
 
-import com.hgshkt.data.storage.interfaces.RemoteUserStorage.RemoteUserStorageResponse
-import com.hgshkt.data.storage.interfaces.RemoteUserStorage.RemoteUserStorageResponse.Failure
-import com.hgshkt.data.storage.interfaces.RemoteUserStorage.RemoteUserStorageResponse.Success
-import com.hgshkt.data.storage.model.StorageUser
+import com.hgshkt.data.storage.user.interfaces.RemoteUserStorage.RemoteUserStorageResponse
+import com.hgshkt.data.storage.user.interfaces.RemoteUserStorage.RemoteUserStorageResponse.Failure
+import com.hgshkt.data.storage.user.interfaces.RemoteUserStorage.RemoteUserStorageResponse.Success
+import com.hgshkt.data.storage.user.model.StorageUser
 import com.hgshkt.domain.data.repository.UserRepository.GetUserByIdResponse
 import com.hgshkt.domain.model.User
 

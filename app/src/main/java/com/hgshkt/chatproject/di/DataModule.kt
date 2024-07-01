@@ -5,9 +5,9 @@ import com.hgshkt.data.remote.api.user.UserApi
 import com.hgshkt.data.remote.websocket.connect.WebSocketConnector
 import com.hgshkt.data.remote.websocket.handle.WebSocketHandlerImpl
 import com.hgshkt.data.repository.user.UserRepositoryImpl
-import com.hgshkt.data.storage.impl.RemoteUserStorageImpl
-import com.hgshkt.data.storage.interfaces.LocalUserStorage
-import com.hgshkt.data.storage.interfaces.RemoteUserStorage
+import com.hgshkt.data.storage.user.impl.RemoteUserStorageImpl
+import com.hgshkt.data.storage.user.interfaces.LocalUserStorage
+import com.hgshkt.data.storage.user.interfaces.RemoteUserStorage
 import com.hgshkt.domain.data.repository.UserRepository
 import dagger.Binds
 import dagger.Module

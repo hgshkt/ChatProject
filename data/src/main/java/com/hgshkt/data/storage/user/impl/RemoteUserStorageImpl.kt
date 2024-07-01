@@ -1,8 +1,8 @@
-package com.hgshkt.data.storage.impl
+package com.hgshkt.data.storage.user.impl
 
 import com.hgshkt.data.remote.api.user.UserApi
-import com.hgshkt.data.storage.interfaces.RemoteUserStorage
-import com.hgshkt.data.storage.mapper.toStorageResponse
+import com.hgshkt.data.storage.user.interfaces.RemoteUserStorage
+import com.hgshkt.data.storage.user.mapper.toStorageResponse
 
 class RemoteUserStorageImpl(
     private val api: UserApi

@@ -1,4 +1,4 @@
-package com.hgshkt.data.storage.model
+package com.hgshkt.data.storage.user.model
 
 data class StorageUser(
     val id: String,
