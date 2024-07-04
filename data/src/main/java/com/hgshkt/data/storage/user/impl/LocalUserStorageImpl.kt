@@ -18,6 +18,6 @@ class LocalUserStorageImpl(
     }
 
     override fun saveUser(user: StorageUser) {
-        userDao.save(user.toLocalDb())
+        userDao.insert(user.toLocalDb())
     }
 }

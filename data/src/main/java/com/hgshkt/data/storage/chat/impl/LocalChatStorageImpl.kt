@@ -11,4 +11,8 @@ class LocalChatStorageImpl(
     override fun getChatById(id: String): StorageChat? {
         return chatDao.getById(id)?.toStorage()
     }
+
+    override fun save(chat: StorageChat) {
+        chatDao.insert(chat)
+    }
 }

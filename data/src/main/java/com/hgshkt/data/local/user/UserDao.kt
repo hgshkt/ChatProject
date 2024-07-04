@@ -11,5 +11,5 @@ interface UserDao {
     fun getById(id: String): LocalDbUser?
 
     @Insert
-    fun save(user: LocalDbUser)
+    fun insert(user: LocalDbUser)
 }

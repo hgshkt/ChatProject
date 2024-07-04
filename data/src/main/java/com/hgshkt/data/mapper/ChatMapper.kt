@@ -22,3 +22,11 @@ fun StorageChat.toDomain(): Chat {
     )
 }
 
+fun Chat.toStorage(): StorageChat {
+    return StorageChat(
+        id = id,
+        name = name,
+        avatarUrl = avatarUrl
+    )
+}
+
