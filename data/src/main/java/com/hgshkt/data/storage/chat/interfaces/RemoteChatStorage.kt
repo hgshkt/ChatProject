@@ -2,7 +2,7 @@ package com.hgshkt.data.storage.chat.interfaces
 
 import com.hgshkt.data.storage.chat.model.StorageChat
 
-interface ChatStorage {
+interface RemoteChatStorage {
     suspend fun getChat(chatId: String): ChatStorageResponse
 
     sealed class ChatStorageResponse(
