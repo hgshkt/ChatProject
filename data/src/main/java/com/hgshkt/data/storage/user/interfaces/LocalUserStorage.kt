@@ -6,4 +6,5 @@ interface LocalUserStorage {
     fun getCurrentUserId(): String
 
     fun getUserById(id: String): StorageUser?
+    fun saveUser(user: StorageUser)
 }

@@ -21,3 +21,11 @@ fun StorageUser.toDomain(): User {
         avatarUrl = avatarUrl ?: "avatar url is null"
     )
 }
+
+fun User.toStorage(): StorageUser {
+    return StorageUser(
+        id = id,
+        name = name,
+        avatarUrl = avatarUrl
+    )
+}
