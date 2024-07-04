@@ -1,5 +1,7 @@
 package com.hgshkt.data.storage.user.mapper
 
+import com.hgshkt.data.local.chat.model.LocalDbChat
+import com.hgshkt.data.local.user.model.LocalDbUser
 import com.hgshkt.data.remote.api.user.model.JsonUser
 import com.hgshkt.data.remote.api.user.reponse.ApiUserResponse
 import com.hgshkt.data.storage.user.interfaces.RemoteUserStorage
@@ -15,6 +17,14 @@ fun ApiUserResponse.toStorageResponse(): RemoteUserStorage.RemoteUserStorageResp
 fun JsonUser.toStorage(): StorageUser {
     return StorageUser(
         id=id,
+        name = name,
+        avatarUrl = avatarUrl
+    )
+}
+
+fun LocalDbUser.toStorage(): StorageUser {
+    return StorageUser(
+        id = id,
         name = name,
         avatarUrl = avatarUrl
     )
