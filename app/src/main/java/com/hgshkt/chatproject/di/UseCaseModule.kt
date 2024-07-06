@@ -3,10 +3,8 @@ package com.hgshkt.chatproject.di
 import com.hgshkt.domain.data.repository.ChatRepository
 import com.hgshkt.domain.data.repository.MessageRepository
 import com.hgshkt.domain.data.repository.UserRepository
-import com.hgshkt.domain.data.websocket.WebSocketHandler
 import com.hgshkt.domain.security.LoginService
 import com.hgshkt.domain.security.RegistrationService
-import com.hgshkt.domain.usecases.ConnectWebSocketUseCase
 import com.hgshkt.domain.usecases.GetChatDetailUseCase
 import com.hgshkt.domain.usecases.GetUserByIdUseCase
 import com.hgshkt.domain.usecases.LoginUseCase
@@ -21,13 +19,6 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object UseCaseModule {
-    @Provides
-    @Singleton
-    fun provideConnectWebSocketUseCase(
-        handler: WebSocketHandler
-    ): ConnectWebSocketUseCase {
-        return ConnectWebSocketUseCase(handler)
-    }
 
     @Provides
     @Singleton

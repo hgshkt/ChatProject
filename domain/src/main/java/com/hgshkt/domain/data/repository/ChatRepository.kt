@@ -1,9 +1,11 @@
 package com.hgshkt.domain.data.repository
 
 import com.hgshkt.domain.model.Chat
+import kotlinx.coroutines.flow.Flow
 
 interface ChatRepository {
     suspend fun getChat(chatId: String): GetChatResponse
+    fun getChatList(id: String): Flow<List<Chat>>
 
     sealed class GetChatResponse(
         val success: Boolean,
