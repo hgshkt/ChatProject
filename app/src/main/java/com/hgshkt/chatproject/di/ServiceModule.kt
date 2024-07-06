@@ -1,11 +1,8 @@
 package com.hgshkt.chatproject.di
 
-import com.hgshkt.chatproject.presentation.data.WebSocketManagerImpl
 import com.hgshkt.data.remote.api.user.UserApi
 import com.hgshkt.data.remote.security.LoginServiceImpl
 import com.hgshkt.data.remote.security.RegistrationServiceImpl
-import com.hgshkt.domain.data.websocket.WebSocketHandler
-import com.hgshkt.domain.data.websocket.WebSocketManager
 import com.hgshkt.domain.security.LoginService
 import com.hgshkt.domain.security.RegistrationService
 import dagger.Binds

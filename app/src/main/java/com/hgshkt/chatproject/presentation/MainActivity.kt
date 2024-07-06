@@ -9,12 +9,12 @@ import androidx.compose.material.Surface
 import androidx.compose.ui.Modifier
 import com.hgshkt.chatproject.presentation.navigation.NavGraph
 import com.hgshkt.chatproject.presentation.ui.theme.ChatProjectTheme
-import com.hgshkt.domain.data.websocket.WebSocketManager
+import com.hgshkt.domain.data.websocket.WebSocketService
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity(
-    private val webSocketManager: WebSocketManager
+    private val webSocketService: WebSocketService
 ) : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,6 +28,11 @@ class MainActivity(
                 }
             }
         }
-        webSocketManager.open()
+        webSocketService.open()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        webSocketService.close()
     }
 }
