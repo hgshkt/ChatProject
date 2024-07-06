@@ -1,9 +1,10 @@
 package com.hgshkt.domain.data.repository
 
 import com.hgshkt.domain.model.Message
+import kotlinx.coroutines.flow.Flow
 
 interface MessageRepository {
-    suspend fun loadChatMessages(chatId: String): ChatMessagesResponse
+    fun loadChatMessages(chatId: String): Flow<List<Message>>
 
     /**
      * @param userId is id of current user
