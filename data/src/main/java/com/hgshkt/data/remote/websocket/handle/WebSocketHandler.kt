@@ -15,14 +15,13 @@ class WebSocketHandlerImpl(
 
     private val url = ""
 
-
     override fun connectWebSocket(webSocketListener: WebSocketListener) {
         connector.connectWebSocket(url) { jsonMessage ->
             Gson().fromJson(jsonMessage, JsonMessage::class.java)
                 .apply {
                     when(type) {
-                        Type.NewData.Message -> webSocketListener.handleNewMessage(getMessage())
-                        Type.NewData.Chat -> webSocketListener.handleNewChat(getChat())
+                        Type.NewData.Message -> webSocketListener.handleNewMessage(mapToMessage())
+                        Type.NewData.Chat -> webSocketListener.handleNewChat(mapToChat())
                         Type.NewData -> webSocketListener.handleNewData(this)
                     }
                 }
@@ -33,11 +32,11 @@ class WebSocketHandlerImpl(
         connector.closeWebSocket()
     }
 
-    private fun JsonMessage.getMessage(): Message {
+    private fun JsonMessage.mapToMessage(): Message {
         return Gson().fromJson(obj, Message::class.java)
     }
 
-    private fun JsonMessage.getChat(): Chat {
+    private fun JsonMessage.mapToChat(): Chat {
         return Gson().fromJson(obj, Chat::class.java)
     }
 }
