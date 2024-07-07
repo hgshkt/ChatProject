@@ -14,11 +14,12 @@ fun ApiChatResponse.toStorageResponse(): RemoteChatStorage.ChatStorageResponse {
     }
 }
 
-private fun JsonChat.toStorage(): StorageChat {
+fun JsonChat.toStorage(): StorageChat {
     return StorageChat(
         id = id,
         name = name,
-        avatarUrl = avatarUrl
+        avatarUrl = avatarUrl,
+        lastMessageId = lastMessageId
     )
 }
 
@@ -26,7 +27,8 @@ fun LocalDbChat.toStorage(): StorageChat {
     return StorageChat(
         id = id,
         name = name,
-        avatarUrl = avatarUrl
+        avatarUrl = avatarUrl,
+        lastMessageId = lastMessageId
     )
 }
 
@@ -34,6 +36,7 @@ fun StorageChat.toLocalDb(): LocalDbChat {
     return LocalDbChat(
         id = id,
         name = name,
-        avatarUrl = avatarUrl
+        avatarUrl = avatarUrl,
+        lastMessageId = lastMessageId
     )
 }

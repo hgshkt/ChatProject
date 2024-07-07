@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.Flow
 interface ChatRepository {
 
     val chats: Flow<List<Chat>>
-    fun getChatList(): Flow<List<Chat>>
+    suspend fun observeChatList()
 
     fun observeChat(chatId: String): Flow<Chat>
 

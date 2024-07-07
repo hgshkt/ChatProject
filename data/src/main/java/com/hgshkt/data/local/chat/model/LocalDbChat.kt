@@ -7,5 +7,6 @@ import androidx.room.PrimaryKey
 data class LocalDbChat(
     @PrimaryKey val id: String,
     val name: String,
-    val avatarUrl: String?
+    val avatarUrl: String?,
+    val lastMessageId: String?
 )

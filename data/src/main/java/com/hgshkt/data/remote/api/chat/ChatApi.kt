@@ -6,4 +6,7 @@ import retrofit2.http.GET
 interface ChatApi {
     @GET("")
     suspend fun getChatById(id: String): ApiChatResponse
+
+    @GET("")
+    suspend fun getChats(userId: String): List<ApiChatResponse>
 }
