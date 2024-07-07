@@ -1,7 +1,9 @@
 package com.hgshkt.data.storage.message.interfaces
 
-import com.hgshkt.domain.model.Message
+import com.hgshkt.data.storage.message.model.StorageMessage
 
 interface LocalMessageStorage {
-    fun getMessagesByChatId(chatId: String): List<Message>
+    fun getMessagesByChatId(chatId: String): List<StorageMessage>
+
+    fun saveMessageLocally(message: StorageMessage)
 }
