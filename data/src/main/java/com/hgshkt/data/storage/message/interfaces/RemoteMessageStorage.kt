@@ -1,9 +1,10 @@
 package com.hgshkt.data.storage.message.interfaces
 
 import com.hgshkt.data.storage.message.model.StorageMessage
+import com.hgshkt.domain.model.Message
 
-interface MessageStorage {
-    suspend fun getMessagesByChatId(chatId: String): MessageStorageResponse
+interface RemoteMessageStorage {
+    suspend fun getMessagesByChatId(chatId: String): List<StorageMessage>
 
     fun sendMessage(chatId: String, text: String, userId: String)
 

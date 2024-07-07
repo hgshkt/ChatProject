@@ -1,12 +1,12 @@
 package com.hgshkt.data.mapper
 
-import com.hgshkt.data.storage.message.interfaces.MessageStorage
-import com.hgshkt.data.storage.message.interfaces.MessageStorage.MessageStorageResponse.*
+import com.hgshkt.data.storage.message.interfaces.RemoteMessageStorage
+import com.hgshkt.data.storage.message.interfaces.RemoteMessageStorage.MessageStorageResponse.*
 import com.hgshkt.data.storage.message.model.StorageMessage
 import com.hgshkt.domain.data.repository.MessageRepository.*
 import com.hgshkt.domain.model.Message
 
-fun MessageStorage.MessageStorageResponse.toRepoResponse(): ChatMessagesResponse {
+fun RemoteMessageStorage.MessageStorageResponse.toRepoResponse(): ChatMessagesResponse {
     return when (this) {
         is Success -> ChatMessagesResponse.Success(
             messages.map { it.toDomain() }

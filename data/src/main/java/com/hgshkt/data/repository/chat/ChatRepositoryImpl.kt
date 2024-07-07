@@ -48,22 +48,6 @@ class ChatRepositoryImpl(
     }
 
     private fun handleMessage(message: Message) {
-        _chats.value.find { it.id == message.id }.lastMessage = message
-    }
-
-    private fun String.toChatOrNull(): Chat? {
-        return try {
-            Gson().fromJson(this, Chat::class.java)
-        } catch (e: Exception) {
-            null
-        }
-    }
-
-    private fun String.toMessageOrNull(): Chat? {
-        return try {
-            Gson().fromJson(this, Chat::class.java)
-        } catch (e: Exception) {
-            null
-        }
+        _chats.value.find { it.id == message.chatId }.lastMessage = message
     }
 }
