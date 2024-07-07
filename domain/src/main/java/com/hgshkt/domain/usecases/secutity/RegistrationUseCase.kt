@@ -6,7 +6,9 @@ import com.hgshkt.domain.security.RegistrationService.RegistrationData
 class RegistrationUseCase(
     private val registrationService: RegistrationService
 ) {
-    suspend fun execute(registrationData: RegistrationData) {
-        registrationService.createUser(registrationData)
+    suspend fun execute(
+        registrationData: RegistrationData
+    ): RegistrationService.RegistrationResponse {
+        return registrationService.createUser(registrationData)
     }
 }
