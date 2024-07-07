@@ -8,6 +8,8 @@ interface ChatRepository {
     val chats: Flow<List<Chat>>
     fun getChatList(): Flow<List<Chat>>
 
+    fun observeChat(chatId: String): Flow<Chat>
+
     sealed class GetChatResponse(
         val success: Boolean,
         val message: String,

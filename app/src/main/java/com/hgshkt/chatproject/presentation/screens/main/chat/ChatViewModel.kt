@@ -1,63 +1,54 @@
 package com.hgshkt.chatproject.presentation.screens.main.chat
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.hgshkt.chatproject.presentation.data.toUI
-import com.hgshkt.chatproject.presentation.data.model.UiChat
-import com.hgshkt.chatproject.presentation.data.model.UiMessage
 import com.hgshkt.domain.model.Chat
 import com.hgshkt.domain.model.Message
 import com.hgshkt.domain.usecases.GetChatDetailUseCase
 import com.hgshkt.domain.usecases.SendMessageUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class ChatViewModel @Inject constructor(
-    private val webSocketManager: WebSocketManager,
     private val getChatDetailUseCase: GetChatDetailUseCase,
     private val sendMessageUseCase: SendMessageUseCase
 ) : ViewModel() {
 
-    private val _chat = MutableLiveData<UiChat>()
-    val chat = _chat
+    private val _chat = MutableStateFlow<Chat?>(null)
+    val chat: Flow<Chat?>
+        get() = _chat
 
-    private val _messages = MutableLiveData<MutableList<UiMessage>>(mutableListOf())
-    val messages = _messages
+    private val _messages = MutableStateFlow<List<Message>>(mutableListOf())
+    val messages: Flow<List<Message>>
+        get() = _messages
 
-    init {
-        connectWebSocket()
+    fun fetchChat(id: String) {
+        viewModelScope.launch {
+            val detail = getChatDetailUseCase.execute(id)
+            detail.chatFlow.collect { chat ->
+                handleChat(chat)
+            }
+            detail.messagesFlow.collect { messages->
+                handleMessages(messages)
+            }
+        }
     }
 
-    fun connectWebSocket() {
-        viewModelScope.launch {
-            val listener = object : WebSocketListener {
-                override fun handleNewChat(chat: Chat) {}
+    private fun handleChat(chat: Chat) {
+        _chat.value = chat
+    }
 
-                override fun handleNewMessage(message: Message) {
-                    if (message.chatId == _chat.value!!.id)
-                        _messages.value!!.add(message.toUI())
-                }
-            }
-            webSocketManager.open(listener)
-        }
+    private fun handleMessages(messages: List<Message>) {
+        _messages.value = messages
     }
 
     fun sendMessage(text: String) {
         viewModelScope.launch {
             sendMessageUseCase.execute(_chat.value!!.id, text)
-        }
-    }
-
-    fun fetchChat(id: String) {
-        viewModelScope.launch {
-            val response = getChatDetailUseCase.execute(id)
-            if (response.success) {
-                _chat.value = response.chat!!.toUI()
-                _messages.value = response.messages!!.map {it.toUI()}.toMutableList()
-            }
         }
     }
 }

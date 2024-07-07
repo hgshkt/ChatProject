@@ -22,7 +22,7 @@ class MessageRepositoryImpl(
         get() = _messages
 
     override suspend fun loadChatMessages(chatId: String) = flow {
-        val localMessages = localMessageStorage.getMessagesByChatId(chatId)
+        val localMessages = localMessageStorage.getMessagesByChatId(chatId).map { it.toDomain() }
         emit(localMessages)
 
         val remoteMessages = remoteMessageStorage.getMessagesByChatId(chatId)
