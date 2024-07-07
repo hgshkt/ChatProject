@@ -5,11 +5,11 @@ import com.hgshkt.domain.data.repository.MessageRepository
 import com.hgshkt.domain.data.repository.UserRepository
 import com.hgshkt.domain.security.LoginService
 import com.hgshkt.domain.security.RegistrationService
-import com.hgshkt.domain.usecases.GetChatDetailUseCase
+import com.hgshkt.domain.usecases.chatScreen.GetChatDetailUseCase
 import com.hgshkt.domain.usecases.GetUserByIdUseCase
-import com.hgshkt.domain.usecases.LoginUseCase
-import com.hgshkt.domain.usecases.RegistrationUseCase
-import com.hgshkt.domain.usecases.SendMessageUseCase
+import com.hgshkt.domain.usecases.secutity.LoginUseCase
+import com.hgshkt.domain.usecases.secutity.RegistrationUseCase
+import com.hgshkt.domain.usecases.chatScreen.SendMessageUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

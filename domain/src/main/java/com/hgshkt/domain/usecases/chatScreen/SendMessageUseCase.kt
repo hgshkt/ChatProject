@@ -1,4 +1,4 @@
-package com.hgshkt.domain.usecases
+package com.hgshkt.domain.usecases.chatScreen
 
 import com.hgshkt.domain.data.repository.MessageRepository
 import com.hgshkt.domain.data.repository.UserRepository

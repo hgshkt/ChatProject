@@ -2,7 +2,7 @@ package com.hgshkt.chatproject.presentation.screens.main.chatList
 
 import androidx.lifecycle.ViewModel
 import com.hgshkt.domain.model.Chat
-import com.hgshkt.domain.usecases.GetUserChatsUseCase
+import com.hgshkt.domain.usecases.chatList.GetUserChatsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import javax.inject.Inject

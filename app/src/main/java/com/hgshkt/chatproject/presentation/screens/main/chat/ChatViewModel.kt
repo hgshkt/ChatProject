@@ -4,8 +4,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.hgshkt.domain.model.Chat
 import com.hgshkt.domain.model.Message
-import com.hgshkt.domain.usecases.GetChatDetailUseCase
-import com.hgshkt.domain.usecases.SendMessageUseCase
+import com.hgshkt.domain.usecases.chatScreen.GetChatDetailUseCase
+import com.hgshkt.domain.usecases.chatScreen.SendMessageUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow

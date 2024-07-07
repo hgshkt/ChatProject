@@ -1,4 +1,4 @@
-package com.hgshkt.domain.usecases
+package com.hgshkt.domain.usecases.secutity
 
 import com.hgshkt.domain.security.LoginService
 import com.hgshkt.domain.security.LoginService.LoginData

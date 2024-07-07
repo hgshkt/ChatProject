@@ -1,4 +1,4 @@
-package com.hgshkt.domain.usecases
+package com.hgshkt.domain.usecases.currentProfile
 
 import com.hgshkt.domain.data.repository.UserRepository
 
