@@ -5,6 +5,7 @@ import androidx.room.Insert
 import androidx.room.Query
 import com.hgshkt.data.local.chat.model.LocalDbChat
 import com.hgshkt.data.storage.chat.model.StorageChat
+import com.hgshkt.domain.model.Chat
 
 @Dao
 interface ChatDao {
@@ -12,5 +13,8 @@ interface ChatDao {
     fun getById(id: String): LocalDbChat?
 
     @Insert
-    fun insert(chat: StorageChat)
+    fun insert(chat: LocalDbChat)
+
+    @Query("SELECT * FROM chat")
+    fun getUserChats(): List<LocalDbChat>
 }

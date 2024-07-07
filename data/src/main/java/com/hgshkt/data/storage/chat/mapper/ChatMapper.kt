@@ -29,3 +29,11 @@ fun LocalDbChat.toStorage(): StorageChat {
         avatarUrl = avatarUrl
     )
 }
+
+fun StorageChat.toLocalDb(): LocalDbChat {
+    return LocalDbChat(
+        id = id,
+        name = name,
+        avatarUrl = avatarUrl
+    )
+}

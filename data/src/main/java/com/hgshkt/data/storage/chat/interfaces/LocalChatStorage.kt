@@ -6,5 +6,5 @@ import com.hgshkt.domain.model.Chat
 interface LocalChatStorage {
     fun getChatById(id: String): StorageChat?
     fun save(chat: StorageChat)
-    fun getChats(id: String): List<Chat>
+    fun getChats(id: String): List<StorageChat>
 }
