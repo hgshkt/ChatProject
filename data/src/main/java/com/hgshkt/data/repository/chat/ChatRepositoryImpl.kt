@@ -35,12 +35,31 @@ class ChatRepositoryImpl(
 
         webSocketService.messageFlow.collect { json ->
             json.toChatOrNull()?.let { chat ->
-                _chats.value += chat
+                handleChat(chat)
+            }
+            json.toMessageOrNull()?.let { message ->
+                handleMessage(message)
             }
         }
     }
 
+    private fun handleChat(chat: Chat) {
+        _chats.value += chat
+    }
+
+    private fun handleMessage(message: Message) {
+        _chats.value.find { it.id == message.id }.lastMessage = message
+    }
+
     private fun String.toChatOrNull(): Chat? {
+        return try {
+            Gson().fromJson(this, Chat::class.java)
+        } catch (e: Exception) {
+            null
+        }
+    }
+
+    private fun String.toMessageOrNull(): Chat? {
         return try {
             Gson().fromJson(this, Chat::class.java)
         } catch (e: Exception) {
