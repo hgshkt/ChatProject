@@ -1,6 +1,5 @@
 package com.hgshkt.data.remote.api.message
 
-import com.hgshkt.data.remote.api.message.model.ApiMessageResponse
 import com.hgshkt.data.remote.api.message.model.JsonMessage
 import retrofit2.http.GET
 import retrofit2.http.POST

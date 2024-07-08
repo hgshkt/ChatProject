@@ -4,10 +4,11 @@ import com.hgshkt.domain.data.repository.ChatRepository
 import com.hgshkt.domain.model.Chat
 import kotlinx.coroutines.flow.Flow
 
-class GetUserChatsUseCase(
+class ObserveUserChatsUseCase(
     private val chatRepository: ChatRepository
 ) {
-    fun execute(): Flow<List<Chat>> {
-        return chatRepository.getChatList()
+    suspend fun execute(): Flow<List<Chat>> {
+        chatRepository.observeChatList()
+        return chatRepository.chats
     }
 }

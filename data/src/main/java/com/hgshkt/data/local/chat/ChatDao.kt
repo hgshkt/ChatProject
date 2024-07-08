@@ -4,8 +4,6 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
 import com.hgshkt.data.local.chat.model.LocalDbChat
-import com.hgshkt.data.storage.chat.model.StorageChat
-import com.hgshkt.domain.model.Chat
 
 @Dao
 interface ChatDao {

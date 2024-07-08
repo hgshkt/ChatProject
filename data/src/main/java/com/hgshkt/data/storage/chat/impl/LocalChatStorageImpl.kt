@@ -5,7 +5,6 @@ import com.hgshkt.data.storage.chat.interfaces.LocalChatStorage
 import com.hgshkt.data.storage.chat.mapper.toLocalDb
 import com.hgshkt.data.storage.chat.mapper.toStorage
 import com.hgshkt.data.storage.chat.model.StorageChat
-import com.hgshkt.domain.model.Chat
 
 class LocalChatStorageImpl(
     private val chatDao: ChatDao
