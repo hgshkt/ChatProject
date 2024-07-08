@@ -1,8 +1,10 @@
-package com.hgshkt.chatproject.di
+package com.hgshkt.chatproject.di.data
 
 import com.hgshkt.data.remote.api.user.UserApi
 import com.hgshkt.data.remote.security.LoginServiceImpl
 import com.hgshkt.data.remote.security.RegistrationServiceImpl
+import com.hgshkt.data.remote.websocket.WebSocketServiceImpl
+import com.hgshkt.domain.data.websocket.WebSocketService
 import com.hgshkt.domain.security.LoginService
 import com.hgshkt.domain.security.RegistrationService
 import dagger.Binds
@@ -10,6 +12,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import okhttp3.OkHttpClient
 import javax.inject.Singleton
 
 @Module
@@ -30,9 +33,9 @@ abstract class ServiceModule {
 
     @Binds
     @Singleton
-    abstract fun provideWebSocketManager(
-        webSocketManagerImpl: WebSocketManagerImpl
-    ): WebSocketManager
+    abstract fun provideWebSocketService(
+        webSocketServiceImpl: WebSocketServiceImpl
+    ): WebSocketService
 }
 
 @Module
@@ -57,9 +60,9 @@ object ServiceImplModule {
 
     @Provides
     @Singleton
-    fun provideWebSocketManagerImpl(
-        webSocketHandler: WebSocketHandler
-    ): WebSocketManagerImpl {
-        return WebSocketManagerImpl(webSocketHandler)
+    fun provideWebSocketServiceImpl(
+        okHttpClient: OkHttpClient
+    ): WebSocketServiceImpl {
+        return WebSocketServiceImpl(okHttpClient)
     }
 }
