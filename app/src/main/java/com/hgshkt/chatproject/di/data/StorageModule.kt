@@ -1,6 +1,7 @@
 package com.hgshkt.chatproject.di.data
 
 import com.hgshkt.data.local.chat.ChatDao
+import com.hgshkt.data.local.data.SharedPrefs
 import com.hgshkt.data.local.message.MessageDao
 import com.hgshkt.data.local.user.UserDao
 import com.hgshkt.data.remote.api.chat.ChatApi
@@ -79,9 +80,10 @@ object StorageImplModule {
     @Provides
     @Singleton
     fun provideLocalUserStorageImpl(
-        userDao: UserDao
+        userDao: UserDao,
+        prefs: SharedPrefs
     ): LocalUserStorageImpl {
-        return LocalUserStorageImpl(userDao)
+        return LocalUserStorageImpl(userDao, prefs)
     }
 
     @Provides
