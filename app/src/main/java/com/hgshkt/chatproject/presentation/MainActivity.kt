@@ -41,7 +41,7 @@ class MainActivity(
                 ) {
                     AppDrawer(drawerState) {
                         Scaffold(
-                            topBar = { TopBar() }
+                            topBar = { TopBar(drawerState) }
                         ) {
                             NavGraph(controller = controller)
                         }
