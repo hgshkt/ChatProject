@@ -1,9 +1,11 @@
 package com.hgshkt.data.storage.chat.interfaces
 
 import com.hgshkt.data.storage.chat.model.StorageChat
+import com.hgshkt.domain.model.Chat
 
 interface RemoteChatStorage {
     suspend fun getChat(chatId: String): ChatStorageResponse
+    suspend fun getChats(userId: String): List<StorageChat>
 
     sealed class ChatStorageResponse(
         val success: Boolean,

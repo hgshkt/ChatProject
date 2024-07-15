@@ -18,7 +18,8 @@ fun StorageChat.toDomain(): Chat {
     return Chat(
         id = id,
         name = name,
-        avatarUrl = avatarUrl
+        avatarUrl = avatarUrl,
+        lastMessage = null
     )
 }
 
@@ -26,7 +27,8 @@ fun Chat.toStorage(): StorageChat {
     return StorageChat(
         id = id,
         name = name,
-        avatarUrl = avatarUrl
+        avatarUrl = avatarUrl,
+        lastMessageId = lastMessage?.id
     )
 }
 

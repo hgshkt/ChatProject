@@ -1,10 +1,10 @@
-package com.hgshkt.chatproject.presentation.navigation
+package com.hgshkt.chatproject.presentation.app_navigation
 
 import androidx.compose.runtime.Composable
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigation
-import androidx.navigation.compose.rememberNavController
 import com.hgshkt.chatproject.presentation.screens.main.chat.ChatScreen
 import com.hgshkt.chatproject.presentation.screens.main.chatList.ChatListScreen
 import com.hgshkt.chatproject.presentation.screens.main.currentProfile.CurrentProfileScreen
@@ -12,8 +12,10 @@ import com.hgshkt.chatproject.presentation.screens.security.login.LoginScreen
 import com.hgshkt.chatproject.presentation.screens.security.registration.RegistrationScreen
 
 @Composable
-fun NavGraph() {
-    val controller = rememberNavController()
+fun NavGraph(
+    controller: NavHostController
+) {
+
 
     NavHost(navController = controller, startDestination = Screen.Main.route) {
         navigation(
