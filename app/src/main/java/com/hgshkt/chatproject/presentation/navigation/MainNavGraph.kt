@@ -8,11 +8,13 @@ import androidx.navigation.compose.navigation
 import com.hgshkt.chatproject.presentation.screens.main.chat.ChatScreen
 import com.hgshkt.chatproject.presentation.screens.main.chatList.ChatListScreen
 import com.hgshkt.chatproject.presentation.screens.main.currentProfile.CurrentProfileScreen
+import com.hgshkt.chatproject.presentation.screens.main.friends.FriendsScreen
+import com.hgshkt.chatproject.presentation.screens.main.profile.ProfileScreen
 import com.hgshkt.chatproject.presentation.screens.security.login.LoginScreen
 import com.hgshkt.chatproject.presentation.screens.security.registration.RegistrationScreen
 
 @Composable
-fun NavGraph(
+fun MainNavGraph(
     controller: NavHostController
 ) {
 
@@ -32,7 +34,10 @@ fun NavGraph(
                 ChatScreen(chatId = "")
             }
             composable(route = Screen.Main.Profile.route) {
-                ChatScreen(chatId = "")
+                ProfileScreen(id = "")
+            }
+            composable(route = Screen.Main.Friends.route) {
+                FriendsScreen()
             }
         }
         navigation(
@@ -42,7 +47,7 @@ fun NavGraph(
             composable(route = Screen.Security.Login.route) {
                 LoginScreen(controller)
             }
-            composable(route = Screen.Security.Login.route) {
+            composable(route = Screen.Security.Registration.route) {
                 RegistrationScreen(controller)
             }
         }
@@ -56,6 +61,7 @@ sealed class Screen(val route: String) {
         data object Profile: Screen("Profile")
         data object ChatList: Screen("ChatList")
         data object Chat: Screen("Chat")
+        data object Friends: Screen("Chat")
     }
     data object Security: Screen("Security") {
 

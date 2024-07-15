@@ -14,7 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
 import com.hgshkt.chatproject.presentation.components.TopBar
 import com.hgshkt.chatproject.presentation.navigation.AppDrawer
-import com.hgshkt.chatproject.presentation.navigation.NavGraph
+import com.hgshkt.chatproject.presentation.navigation.MainNavGraph
 import com.hgshkt.chatproject.presentation.ui.theme.ChatProjectTheme
 import com.hgshkt.domain.data.websocket.WebSocketService
 import dagger.hilt.android.AndroidEntryPoint
@@ -43,7 +43,7 @@ class MainActivity(
                         Scaffold(
                             topBar = { TopBar(drawerState) }
                         ) {
-                            NavGraph(controller = controller)
+                            MainNavGraph(controller = controller)
                         }
                     }
                 }
