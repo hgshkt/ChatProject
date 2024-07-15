@@ -12,8 +12,9 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
-import com.hgshkt.chatproject.presentation.app_navigation.AppDrawer
-import com.hgshkt.chatproject.presentation.app_navigation.NavGraph
+import com.hgshkt.chatproject.presentation.components.TopBar
+import com.hgshkt.chatproject.presentation.navigation.AppDrawer
+import com.hgshkt.chatproject.presentation.navigation.NavGraph
 import com.hgshkt.chatproject.presentation.ui.theme.ChatProjectTheme
 import com.hgshkt.domain.data.websocket.WebSocketService
 import dagger.hilt.android.AndroidEntryPoint
@@ -22,7 +23,8 @@ import dagger.hilt.android.AndroidEntryPoint
 class MainActivity(
     private val webSocketService: WebSocketService
 ) : ComponentActivity() {
-    @SuppressLint("UnusedMaterialScaffoldPaddingParameter",
+    @SuppressLint(
+        "UnusedMaterialScaffoldPaddingParameter",
         "UnusedMaterial3ScaffoldPaddingParameter"
     )
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,7 +41,7 @@ class MainActivity(
                 ) {
                     AppDrawer(drawerState) {
                         Scaffold(
-                            topBar = {}
+                            topBar = { TopBar() }
                         ) {
                             NavGraph(controller = controller)
                         }
@@ -48,10 +50,9 @@ class MainActivity(
             }
         }
     }
+
     override fun onDestroy() {
         super.onDestroy()
         webSocketService.close()
     }
 }
-
-

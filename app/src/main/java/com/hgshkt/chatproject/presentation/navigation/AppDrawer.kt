@@ -1,4 +1,4 @@
-package com.hgshkt.chatproject.presentation.app_navigation
+package com.hgshkt.chatproject.presentation.navigation
 
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height

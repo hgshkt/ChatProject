@@ -20,7 +20,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import com.hgshkt.chatproject.presentation.app_navigation.Screen
+import com.hgshkt.chatproject.presentation.navigation.Screen
 import com.hgshkt.chatproject.presentation.screens.security.LinkToRegScreen
 import com.hgshkt.chatproject.presentation.screens.security.LoginField
 import com.hgshkt.chatproject.presentation.screens.security.PasswordField
