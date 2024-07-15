@@ -3,6 +3,10 @@ package com.hgshkt.chatproject.presentation.navigation
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Email
+import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.DrawerState
 import androidx.compose.material3.Icon
 import androidx.compose.material3.ModalDrawerSheet
@@ -22,6 +26,24 @@ import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.launch
 
 
+private val navigationItems = listOf(
+    NavigationItemData(
+        title = "Profile",
+        selectedIcon = Icons.Filled.Home,
+        unselectedIcon = Icons.Default.Home
+    ),
+    NavigationItemData(
+        title = "Chats",
+        selectedIcon = Icons.Filled.Email,
+        unselectedIcon = Icons.Default.Email
+    ),
+    NavigationItemData(
+        title = "Friends",
+        selectedIcon = Icons.Filled.Person,
+        unselectedIcon = Icons.Default.Person
+    )
+)
+
 @Composable
 fun AppDrawer(
     drawerState: DrawerState,
@@ -29,7 +51,7 @@ fun AppDrawer(
 ) {
     ModalNavigationDrawer(
         drawerContent = {
-            DrawerContent(emptyList(), drawerState)
+            DrawerContent(navigationItems, drawerState)
         },
         drawerState = drawerState
     ) {
