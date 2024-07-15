@@ -27,6 +27,7 @@ fun User.toUi(): UiUser {
     return UiUser(
         id = id,
         name = name,
-        avatarUrl = avatarUrl
+        avatarUrl = avatarUrl,
+        backgroundUrl = backgroundUrl
     )
 }

@@ -18,7 +18,8 @@ fun StorageUser.toDomain(): User {
     return User(
         id = id,
         name = name ?: "name is null",
-        avatarUrl = avatarUrl ?: "avatar url is null"
+        avatarUrl = avatarUrl ?: "avatar url is null",
+        backgroundUrl = backgroundUrl
     )
 }
 
@@ -26,6 +27,7 @@ fun User.toStorage(): StorageUser {
     return StorageUser(
         id = id,
         name = name,
-        avatarUrl = avatarUrl
+        avatarUrl = avatarUrl,
+        backgroundUrl = backgroundUrl
     )
 }

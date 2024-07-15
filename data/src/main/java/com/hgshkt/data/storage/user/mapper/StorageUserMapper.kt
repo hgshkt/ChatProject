@@ -17,7 +17,8 @@ fun JsonUser.toStorage(): StorageUser {
     return StorageUser(
         id=id,
         name = name,
-        avatarUrl = avatarUrl
+        avatarUrl = avatarUrl,
+        backgroundUrl = backgroundUrl
     )
 }
 
@@ -25,7 +26,8 @@ fun LocalDbUser.toStorage(): StorageUser {
     return StorageUser(
         id = id,
         name = name,
-        avatarUrl = avatarUrl
+        avatarUrl = avatarUrl,
+        backgroundUrl = backgroundUrl
     )
 }
 
@@ -33,6 +35,7 @@ fun StorageUser.toLocalDb(): LocalDbUser {
     return LocalDbUser(
         id = id,
         name = name,
-        avatarUrl = avatarUrl
+        avatarUrl = avatarUrl,
+        backgroundUrl = backgroundUrl
     )
 }

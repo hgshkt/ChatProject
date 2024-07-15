@@ -1,13 +1,10 @@
 package com.hgshkt.chatproject.presentation.screens.main
 
 import androidx.compose.foundation.layout.Box
-import androidx.compose.material.Text
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.FontStyle
-import androidx.compose.ui.unit.TextUnit
-import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.hgshkt.chatproject.R
 
