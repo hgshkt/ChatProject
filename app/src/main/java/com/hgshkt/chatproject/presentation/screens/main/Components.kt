@@ -75,12 +75,27 @@ fun SearchField(
 fun UserList(
     modifier: Modifier = Modifier,
     users: List<UiUser>,
-    itemContent: @Composable () -> Unit
+    additionalContent: @Composable () -> Unit
 ) {
     LazyColumn(modifier = modifier) {
-        items(count = users.size) {
-            itemContent()
+        items(count = users.size) { index ->
+            UserItemBase(user = users[index]) {
+                additionalContent()
+            }
         }
+    }
+}
+
+@Composable
+fun UserItemBase(
+    modifier: Modifier = Modifier,
+    user: UiUser,
+    content: @Composable () -> Unit
+) {
+    Row(modifier = modifier) {
+        UserAvatar(url = user.avatarUrl)
+        Text(user.name)
+        content()
     }
 }
 

@@ -1,11 +1,17 @@
 package com.hgshkt.chatproject.presentation.screens.main.friends.fragments.search
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import com.hgshkt.chatproject.presentation.data.model.UiUser
 import com.hgshkt.chatproject.presentation.screens.main.SearchField
 import com.hgshkt.chatproject.presentation.screens.main.UserList
 
@@ -17,7 +23,7 @@ fun SearchFragment(modifier: Modifier = Modifier) {
         mutableStateOf("")
     }
 
-    val users = emptyList()
+    val users = emptyList<UiUser>()
 
     Column {
         SearchField(
@@ -31,12 +37,16 @@ fun SearchFragment(modifier: Modifier = Modifier) {
             }
         )
         UserList(users = users) {
-            SearchUserItem()
+            AddButton {
+                // viewModel.add()
+            }
         }
     }
 }
 
 @Composable
-fun SearchUserItem(modifier: Modifier = Modifier) {
-
+fun AddButton(modifier: Modifier = Modifier, onClick: () -> Unit) {
+    IconButton(modifier = modifier, onClick = onClick) {
+        Icon(imageVector = Icons.Default.Add, contentDescription = "Add button")
+    }
 }
