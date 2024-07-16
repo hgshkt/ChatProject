@@ -17,8 +17,6 @@ import com.hgshkt.chatproject.presentation.screens.security.registration.Registr
 fun MainNavGraph(
     controller: NavHostController
 ) {
-
-
     NavHost(navController = controller, startDestination = Screen.Main.route) {
         navigation(
             route = Screen.Main.route,
