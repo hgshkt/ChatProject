@@ -23,10 +23,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class MainActivity(
     private val webSocketService: WebSocketService
 ) : ComponentActivity() {
-    @SuppressLint(
-        "UnusedMaterialScaffoldPaddingParameter",
-        "UnusedMaterial3ScaffoldPaddingParameter"
-    )
+    @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         webSocketService.open()
