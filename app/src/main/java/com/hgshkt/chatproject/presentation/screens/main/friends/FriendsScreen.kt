@@ -25,6 +25,11 @@ import androidx.navigation.compose.rememberNavController
 import com.hgshkt.chatproject.presentation.screens.main.friends.fragments.friends.FriendsFragment
 import com.hgshkt.chatproject.presentation.screens.main.friends.fragments.search.SearchFragment
 
+private val items = listOf(
+    Item.Search,
+    Item.Friends
+)
+
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun FriendsScreen(modifier: Modifier = Modifier) {
@@ -35,7 +40,7 @@ fun FriendsScreen(modifier: Modifier = Modifier) {
         Column {
             Scaffold(
                 topBar = {
-                    FriendsScreenTopBar()
+                    FriendsScreenTopBar(items = items, controller = controller)
                 }
             ) {
                 FriendsScreenNavGraph(controller)
@@ -77,11 +82,11 @@ fun FriendsScreenTopBar(
 
 @Composable
 fun FriendsScreenNavGraph(controller: NavHostController) {
-    NavHost(navController = controller, startDestination = Item.Friends.title) {
-        composable(route = Item.Friends.title) {
+    NavHost(navController = controller, startDestination = Item.Friends.route) {
+        composable(route = Item.Friends.route) {
             FriendsFragment()
         }
-        composable(route = Item.Search.title) {
+        composable(route = Item.Search.route) {
             SearchFragment()
         }
     }
