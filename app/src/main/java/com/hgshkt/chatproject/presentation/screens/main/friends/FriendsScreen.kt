@@ -22,6 +22,9 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.hgshkt.chatproject.presentation.data.model.UiUser
+import com.hgshkt.chatproject.presentation.screens.main.SearchField
+import com.hgshkt.chatproject.presentation.screens.main.UserList
 import com.hgshkt.chatproject.presentation.screens.main.friends.fragments.friends.FriendsFragment
 import com.hgshkt.chatproject.presentation.screens.main.friends.fragments.search.SearchFragment
 
@@ -88,6 +91,35 @@ fun FriendsScreenNavGraph(controller: NavHostController) {
         }
         composable(route = Item.Search.route) {
             SearchFragment()
+        }
+    }
+}
+
+@Composable
+fun UserListSearchable(
+    modifier: Modifier = Modifier,
+    users: List<UiUser>,
+    placeholder: String = "Search user",
+    onSearchButtonClick: (String) -> Unit,
+    additionalContent: @Composable () -> Unit,
+) {
+    var value by rememberSaveable {
+        mutableStateOf("")
+    }
+
+    Column(modifier = modifier) {
+        SearchField(
+            placeholder = placeholder,
+            value = value,
+            onValueChange = { newValue ->
+                value = newValue
+            },
+            onButtonClick = {
+                onSearchButtonClick(value)
+            }
+        )
+        UserList(users = users) {
+            additionalContent()
         }
     }
 }
