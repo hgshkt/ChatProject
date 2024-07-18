@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.Flow
 interface UserRepository {
     suspend fun getUserById(id: String): GetUserByIdResponse
     fun getCurrentUserId(): String
-    fun getCurrentUserFriends(): Flow<UserSimpleData>
+    fun getCurrentUserFriends(id: String): Flow<UserSimpleData>
     fun getUsersByQuery(query: String): Flow<UserSimpleData>
 
     sealed class GetUserByIdResponse(

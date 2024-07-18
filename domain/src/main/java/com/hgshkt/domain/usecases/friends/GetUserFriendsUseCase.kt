@@ -8,6 +8,7 @@ class GetUserFriendsUseCase(
     private val userRepository: UserRepository
 ) {
     fun execute(): Flow<UserSimpleData> {
-        return userRepository.getCurrentUserFriends()
+        val id = userRepository.getCurrentUserId()
+        return userRepository.getCurrentUserFriends(id)
     }
 }
