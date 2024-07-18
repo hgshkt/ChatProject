@@ -7,26 +7,5 @@ interface ChatRepository {
 
     val chats: Flow<List<Chat>>
     suspend fun observeChatList()
-
     fun observeChat(chatId: String): Flow<Chat>
-
-    sealed class GetChatResponse(
-        val success: Boolean,
-        val message: String,
-        val value: Chat?
-    ) {
-        data class Success(val chat: Chat): GetChatResponse(
-            success = true,
-            message = "Chat loaded successful",
-            value = chat
-        )
-
-        data class Failure(val msg: String = "Some error occurred"): GetChatResponse(
-            success = false,
-            message = msg,
-            value = null
-        )
-
-        companion object
-    }
 }

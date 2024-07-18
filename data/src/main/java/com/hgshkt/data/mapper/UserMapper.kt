@@ -4,13 +4,13 @@ import com.hgshkt.data.storage.user.interfaces.RemoteUserStorage.RemoteUserStora
 import com.hgshkt.data.storage.user.interfaces.RemoteUserStorage.RemoteUserStorageResponse.Failure
 import com.hgshkt.data.storage.user.interfaces.RemoteUserStorage.RemoteUserStorageResponse.Success
 import com.hgshkt.data.storage.user.model.StorageUser
-import com.hgshkt.domain.data.repository.UserRepository.GetUserByIdResponse
+import com.hgshkt.domain.data.Result
 import com.hgshkt.domain.model.User
 
-fun RemoteUserStorageResponse.toRepositoryResponse(): GetUserByIdResponse {
+fun RemoteUserStorageResponse.toDomainResult(): Result<User> {
     return when(this) {
-        is Success -> GetUserByIdResponse.Success(user.toDomain())
-        is Failure -> GetUserByIdResponse.Failure(message)
+        is Success -> Result.Success(user.toDomain())
+        is Failure -> Result.Failure(message)
     }
 }
 
