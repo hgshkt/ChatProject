@@ -5,7 +5,7 @@ import com.hgshkt.data.mapper.toDomainResult
 import com.hgshkt.data.mapper.toStorage
 import com.hgshkt.data.storage.user.interfaces.LocalUserStorage
 import com.hgshkt.data.storage.user.interfaces.RemoteUserStorage
-import com.hgshkt.domain.data.Result
+import com.hgshkt.domain.data.Resultc
 import com.hgshkt.domain.data.repository.UserRepository
 import com.hgshkt.domain.model.User
 
@@ -14,11 +14,11 @@ class UserRepositoryImpl(
     private val localUserStorage: LocalUserStorage
 ) : UserRepository {
 
-    override suspend fun getUserById(id: String): Result<User> {
+    override suspend fun getUserById(id: String): Resultc<User> {
         // if user saved locally,return it
         val localUser = localUserStorage.getUserById(id)
         localUser?.let {
-            return Result.Success(it.toDomain())
+            return Resultc.Success(it.toDomain())
         }
         // in other case fetch value from remote storage
         val response = remoteUserStorage.getUserById(id).toDomainResult()
@@ -31,5 +31,14 @@ class UserRepositoryImpl(
 
     override fun getCurrentUserId(): String {
         return localUserStorage.getCurrentUserId()
+    }
+
+    override suspend fun getFriendsFor(id: String): Resultc<List<User>> {
+        return remoteUserStorage.getFriendsFor(id).toDomainResult()
+
+    }
+
+    override suspend fun getRecommended(id: String): Resultc<List<User>> {
+        return remoteUserStorage.getRecommended(id).toDomainResult()
     }
 }

@@ -1,13 +1,11 @@
 package com.hgshkt.domain.data.repository
 
-import com.hgshkt.domain.data.Result
 import com.hgshkt.domain.model.User
-import com.hgshkt.domain.model.UserSimpleData
-import kotlinx.coroutines.flow.Flow
+import com.hgshkt.domain.data.Resultc
 
 interface UserRepository {
-    suspend fun getUserById(id: String): Result<User>
+    suspend fun getUserById(id: String): Resultc<User>
     fun getCurrentUserId(): String
-    fun getCurrentUserFriends(id: String): Flow<UserSimpleData>
-    fun getUsersByQuery(query: String): Flow<UserSimpleData>
+    suspend fun getFriendsFor(id: String): Resultc<List<User>>
+    suspend fun getRecommended(id: String): Resultc<List<User>>
 }
