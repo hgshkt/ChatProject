@@ -1,16 +1,28 @@
 package com.hgshkt.data.mapper
 
-import com.hgshkt.data.storage.user.interfaces.RemoteUserStorage.RemoteUserStorageResponse
-import com.hgshkt.data.storage.user.interfaces.RemoteUserStorage.RemoteUserStorageResponse.Failure
-import com.hgshkt.data.storage.user.interfaces.RemoteUserStorage.RemoteUserStorageResponse.Success
+import com.hgshkt.data.storage.user.interfaces.RemoteUserStorage
 import com.hgshkt.data.storage.user.model.StorageUser
-import com.hgshkt.domain.data.repository.UserRepository.GetUserByIdResponse
+import com.hgshkt.domain.data.repository.UserRepository
 import com.hgshkt.domain.model.User
 
-fun RemoteUserStorageResponse.toRepositoryResponse(): GetUserByIdResponse {
-    return when(this) {
-        is Success -> GetUserByIdResponse.Success(user.toDomain())
-        is Failure -> GetUserByIdResponse.Failure(message)
+
+fun RemoteUserStorage.UserResponse.toRepository(): UserRepository.UserResponse {
+    return when (this) {
+        is RemoteUserStorage.UserResponse.Success ->
+            UserRepository.UserResponse.Success(user.toDomain())
+
+        is RemoteUserStorage.UserResponse.Failure ->
+            UserRepository.UserResponse.Failure(message)
+    }
+}
+
+fun RemoteUserStorage.UserListResponse.toRepository(): UserRepository.UserListResponse {
+    return when (this) {
+        is RemoteUserStorage.UserListResponse.Success ->
+            UserRepository.UserListResponse.Success(userList!!.map { it.toDomain() })
+
+        is RemoteUserStorage.UserListResponse.Failure ->
+            UserRepository.UserListResponse.Failure(message)
     }
 }
 

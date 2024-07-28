@@ -4,6 +4,7 @@ package com.hgshkt.data.remote.api.user
 import com.hgshkt.data.remote.api.user.reponse.LoginResponse
 import com.hgshkt.data.remote.api.user.reponse.ApiRegistrationResponse
 import com.hgshkt.data.remote.api.user.reponse.ApiUserResponse
+import com.hgshkt.data.remote.api.user.reponse.ApiUserListResponse
 import com.hgshkt.data.remote.api.user.request.LoginRequest
 import com.hgshkt.data.remote.api.user.request.ApiRegistrationRequest
 import retrofit2.http.Body
@@ -20,4 +21,10 @@ interface UserApi {
 
     @POST("")
     suspend fun register(@Body request: ApiRegistrationRequest): ApiRegistrationResponse
+
+    @GET("")
+    suspend fun getFriendsFor(id: String): ApiUserListResponse
+
+    @GET("")
+    suspend fun getRecommended(id: String): ApiUserListResponse
 }
