@@ -11,7 +11,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.hgshkt.chatproject.R
-import com.hgshkt.chatproject.presentation.model.UiChat
+import com.hgshkt.chatproject.presentation.data.model.UiChat
 
 @Composable
 fun ChatItem(
@@ -39,7 +39,7 @@ fun ChatAvatar(
         modifier = modifier,
         error = painterResource(R.drawable.avatar_error),
         placeholder = painterResource(R.drawable.loading_avatar),
-        fallback = painterResource(R.drawable.default_avatar)
+        fallback = painterResource(R.drawable.default_chat_avatar)
     )
 }
 

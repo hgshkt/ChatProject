@@ -1,27 +1,28 @@
 package com.hgshkt.chatproject.presentation.screens.main.currentProfile
 
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.*
-import androidx.compose.material.Text
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
-import com.hgshkt.chatproject.R
+import androidx.hilt.navigation.compose.hiltViewModel
+import com.hgshkt.chatproject.presentation.screens.main.ProfileBackground
+import com.hgshkt.chatproject.presentation.screens.main.ProfileUserName
+import com.hgshkt.chatproject.presentation.screens.main.UserAvatar
 
 @Composable
-fun CurrentProfileScreen() {
-    Image(
-        painter = painterResource(id = R.drawable.ic_launcher_background),
-        contentDescription = "Background image",
-        contentScale = ContentScale.Crop,
-        modifier = Modifier
-            .fillMaxWidth()
-            .fillMaxHeight(0.3f)
-    )
+fun CurrentProfileScreen(
+    modifier: Modifier = Modifier,
+    viewModel: CurrentProfileViewModel = hiltViewModel()
+) {
+    val url = ""
+    val name = "Name"
+
+    ProfileBackground(url = url)
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Top,
@@ -30,12 +31,8 @@ fun CurrentProfileScreen() {
         Spacer(
             modifier = Modifier.fillMaxHeight(0.25f)
         )
-        Image(
-            painter = painterResource(id = R.drawable.ic_launcher_background),
-            contentDescription = "Background image",
-            modifier = Modifier.size(80.dp)
-        )
-        Text("Name")
+        UserAvatar(url = url)
+        ProfileUserName(name = name)
     }
 }
 

@@ -2,9 +2,9 @@ package com.hgshkt.chatproject.presentation.screens.security
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.Button
-import androidx.compose.material.Text
-import androidx.compose.material.TextField
+import androidx.compose.material3.Button
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.ImeAction
@@ -101,8 +101,8 @@ var linkToLoginText = "To login screen"
 
 @Composable
 fun LinkToLoginScreen(
-    text: String = linkToLoginText,
     modifier: Modifier = Modifier,
+    text: String = linkToLoginText,
     onCLick: () -> Unit
 ) {
     Text(text, modifier = modifier.clickable {
