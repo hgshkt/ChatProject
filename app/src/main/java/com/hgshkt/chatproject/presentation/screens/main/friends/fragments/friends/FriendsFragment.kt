@@ -5,26 +5,34 @@ import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
-import com.hgshkt.chatproject.presentation.data.model.UiUser
+import androidx.hilt.navigation.compose.hiltViewModel
+import com.hgshkt.chatproject.presentation.screens.main.friends.FriendsViewModel
 import com.hgshkt.chatproject.presentation.screens.main.friends.UserListSearchable
 
 private const val placeholder = "Enter user name"
 
 @Composable
-fun FriendsFragment() {
-    val users = emptyList<UiUser>()
+fun FriendsFragment(
+    viewModel: FriendsViewModel = hiltViewModel()
+) {
+    val friends = viewModel.friendsFlow.collectAsState()
 
     UserListSearchable(
-        users = users,
+        users = friends.value,
         onSearchButtonClick = { string ->
             // viewModel.search(string)
         },
         placeholder = placeholder
     ) {
         DeleteButton {
-            // viewModel.add()
+            // viewModel.delete()
         }
+    }
+    LaunchedEffect(key1 = "view model fetch friends") {
+        viewModel.fetchFriends()
     }
 }
 
