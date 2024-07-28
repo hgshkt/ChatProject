@@ -1,24 +1,16 @@
 package com.hgshkt.data.mapper
 
+import com.hgshkt.data.storage.StorageResult
+import com.hgshkt.data.storage.user.interfaces.LocalUserStorage
 import com.hgshkt.data.storage.user.interfaces.RemoteUserStorage
 import com.hgshkt.data.storage.user.model.StorageUser
 import com.hgshkt.domain.data.Resultc
 import com.hgshkt.domain.model.User
 
-fun RemoteUserStorage.UserResponse.toDomainResult(): Resultc<User> {
-    return when (this) {
-        is RemoteUserStorage.UserResponse.Success -> Resultc.Success(user.toDomain())
-        is RemoteUserStorage.UserResponse.Failure -> Resultc.Failure(message)
-    }
-}
-
-fun RemoteUserStorage.UserListResponse.toDomainResult(): Resultc<List<User>> {
-    return when (this) {
-        is RemoteUserStorage.UserListResponse.Success ->
-            Resultc.Success(value!!.map { it.toDomain() })
-
-        is RemoteUserStorage.UserListResponse.Failure ->
-            Resultc.Failure(message)
+fun <T> StorageResult<T>.toDomain(): Resultc<T> {
+    return when(this) {
+        is StorageResult.Success -> Resultc.Success(value!!)
+        is StorageResult.Failure -> Resultc.Failure(message)
     }
 }
 
