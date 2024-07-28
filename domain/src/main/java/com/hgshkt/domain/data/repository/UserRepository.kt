@@ -8,4 +8,5 @@ interface UserRepository {
     fun getCurrentUserId(): String
     suspend fun getFriendsFor(id: String): Resultc<List<User>>
     suspend fun getRecommended(id: String): Resultc<List<User>>
+    suspend fun getUsersByQuery(query: String): Resultc<List<User>>
 }
