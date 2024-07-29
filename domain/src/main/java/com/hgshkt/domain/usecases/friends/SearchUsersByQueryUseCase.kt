@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.Flow
 class SearchUsersByQueryUseCase(
     private val userRepository: UserRepository
 ) {
-    suspend fun execute(query: String): Resultc<List<User>> {
+    suspend fun execute(query: String): Resultc<List<UserSimpleData>> {
         return userRepository.getUsersByQuery(query)
     }
 }

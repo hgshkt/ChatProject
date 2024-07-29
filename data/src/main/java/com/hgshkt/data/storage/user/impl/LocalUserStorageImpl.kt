@@ -2,6 +2,7 @@ package com.hgshkt.data.storage.user.impl
 
 import com.hgshkt.data.local.data.SharedPrefs
 import com.hgshkt.data.local.user.UserDao
+import com.hgshkt.data.storage.StorageResult
 import com.hgshkt.data.storage.user.interfaces.LocalUserStorage
 import com.hgshkt.data.storage.user.mapper.toLocalDb
 import com.hgshkt.data.storage.user.mapper.toStorage
@@ -15,8 +16,11 @@ class LocalUserStorageImpl(
         return prefs.getCurrentUserId()
     }
 
-    override fun getUserById(id: String): StorageUser? {
-        return userDao.getById(id)?.toStorage()
+    override fun getUserById(id: String): StorageResult<StorageUser> {
+        userDao.getById(id)?.let {
+            return StorageResult.Success(it.toStorage())
+        }
+        return StorageResult.Failure()
     }
 
     override fun saveUser(user: StorageUser) {
