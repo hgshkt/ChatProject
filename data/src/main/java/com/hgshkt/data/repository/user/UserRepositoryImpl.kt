@@ -6,31 +6,38 @@ import com.hgshkt.data.storage.user.interfaces.LocalUserStorage
 import com.hgshkt.data.storage.user.interfaces.RemoteUserStorage
 import com.hgshkt.domain.data.Resultc
 import com.hgshkt.domain.data.repository.UserRepository
+import com.hgshkt.domain.data.repository.UserRepository.LoadUserState
 import com.hgshkt.domain.model.User
 import com.hgshkt.domain.model.UserSimpleData
+import kotlinx.coroutines.flow.flow
 
 class UserRepositoryImpl(
     private val remoteUserStorage: RemoteUserStorage,
     private val localUserStorage: LocalUserStorage
 ) : UserRepository {
 
-    override suspend fun getUserById(id: String): Resultc<User> {
-        // TODO() local and remote division
-        // if user saved locally,return it
+    override fun getUserById(id: String) = flow {
+
         localUserStorage.getUserById(id).apply {
             if (success) {
-                return Resultc.Success(value!!.toDomain())
+                val successResult = LoadUserState.LocalSuccess(value!!.toDomainSimple())
+                emit(successResult)
+            } else {
+                val failureResult = LoadUserState.LocalError(message = message)
+                emit(failureResult)
             }
         }
 
-        // in other case fetch value from remote storage
         remoteUserStorage.getUserById(id).apply {
             if(success) {
                 localUserStorage.saveUser(value!!)
-                return Resultc.Success(value.toDomain())
+                val successResult = LoadUserState.RemoteSuccess(value.toDomain())
+                emit(successResult)
+            } else {
+                val failureResult = LoadUserState.RemoteError(message = message)
+                emit(failureResult)
             }
         }
-        return Resultc.Failure()
     }
 
     override fun getCurrentUserId(): String {

@@ -11,7 +11,7 @@ import com.hgshkt.domain.usecases.chatList.ObserveUserChatsUseCase
 import com.hgshkt.domain.usecases.secutity.LoginUseCase
 import com.hgshkt.domain.usecases.secutity.RegistrationUseCase
 import com.hgshkt.domain.usecases.chatScreen.SendMessageUseCase
-import com.hgshkt.domain.usecases.currentProfile.GetCurrentUserUseCase
+import com.hgshkt.domain.usecases.currentProfile.FlowCurrentUserUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -68,8 +68,8 @@ object UseCaseModule {
     @Singleton
     fun provideGetCurrentUserUseCase(
         userRepository: UserRepository
-    ): GetCurrentUserUseCase {
-        return GetCurrentUserUseCase(userRepository)
+    ): FlowCurrentUserUseCase {
+        return FlowCurrentUserUseCase(userRepository)
     }
 
     @Provides

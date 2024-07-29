@@ -1,13 +1,13 @@
 package com.hgshkt.domain.usecases.currentProfile
 
-import com.hgshkt.domain.data.Resultc
 import com.hgshkt.domain.data.repository.UserRepository
-import com.hgshkt.domain.model.User
+import com.hgshkt.domain.data.repository.UserRepository.LoadUserState
+import kotlinx.coroutines.flow.Flow
 
-class GetCurrentUserUseCase(
+class FlowCurrentUserUseCase(
     private val repository: UserRepository
 ) {
-    suspend fun execute(): Resultc<User> {
+    fun execute(): Flow<LoadUserState> {
         val currentUserId = repository.getCurrentUserId()
         return repository.getUserById(currentUserId)
     }
