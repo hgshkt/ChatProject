@@ -5,7 +5,6 @@ import com.hgshkt.data.storage.user.model.StorageUser
 
 interface LocalUserStorage {
     fun getCurrentUserId(): String
-
     fun getUserById(id: String): StorageResult<StorageUser>
     fun saveUser(user: StorageUser)
 }
