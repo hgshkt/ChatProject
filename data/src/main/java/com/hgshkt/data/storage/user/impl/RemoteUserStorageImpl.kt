@@ -20,4 +20,8 @@ class RemoteUserStorageImpl(
     override suspend fun getRecommended(id: String): StorageResult<List<StorageUser>> {
         return api.getRecommended(id).toStorage()
     }
+
+    override suspend fun getUsersByQuery(query: String): StorageResult<List<StorageUser>> {
+        return api.searchUsers(query).toStorage()
+    }
 }

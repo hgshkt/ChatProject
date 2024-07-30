@@ -63,6 +63,11 @@ class UserRepositoryImpl(
     }
 
     override suspend fun getUsersByQuery(query: String): Resultc<List<UserSimpleData>> {
-        TODO("Not yet implemented")
+        remoteUserStorage.getUsersByQuery(query).apply {
+            if(success) {
+                return Resultc.Success(value!!.map { user -> user.toDomainSimple() })
+            }
+        }
+        return Resultc.Failure()
     }
 }

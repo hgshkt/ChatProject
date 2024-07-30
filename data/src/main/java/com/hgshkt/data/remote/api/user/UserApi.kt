@@ -27,4 +27,7 @@ interface UserApi {
 
     @GET("")
     suspend fun getRecommended(id: String): ApiUserListResponse
+
+    @GET("")
+    suspend fun searchUsers(query: String): ApiUserListResponse
 }
