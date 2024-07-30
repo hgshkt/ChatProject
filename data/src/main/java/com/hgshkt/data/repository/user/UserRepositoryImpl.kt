@@ -1,5 +1,6 @@
 package com.hgshkt.data.repository.user
 
+import com.hgshkt.data.filter.user.UserFilter
 import com.hgshkt.data.mapper.toDomain
 import com.hgshkt.data.mapper.toDomainSimple
 import com.hgshkt.data.storage.user.interfaces.LocalUserStorage
@@ -13,7 +14,8 @@ import kotlinx.coroutines.flow.flow
 
 class UserRepositoryImpl(
     private val remoteUserStorage: RemoteUserStorage,
-    private val localUserStorage: LocalUserStorage
+    private val localUserStorage: LocalUserStorage,
+    private val userFilter: UserFilter
 ) : UserRepository {
 
     override fun getUserById(id: String) = flow {
@@ -69,5 +71,9 @@ class UserRepositoryImpl(
             }
         }
         return Resultc.Failure()
+    }
+
+    override fun filterFriendsByQuery(query: String): List<UserSimpleData> {
+        return userFilter.filterByQuery(query)
     }
 }

@@ -15,6 +15,7 @@ import androidx.compose.ui.res.painterResource
 import coil.compose.AsyncImage
 import com.hgshkt.chatproject.R
 import com.hgshkt.chatproject.presentation.data.model.UiUser
+import com.hgshkt.chatproject.presentation.data.model.UiUserSimpleData
 
 @Composable
 fun UserAvatar(
@@ -74,7 +75,7 @@ fun SearchField(
 @Composable
 fun UserList(
     modifier: Modifier = Modifier,
-    users: List<UiUser>,
+    users: List<UiUserSimpleData>,
     additionalContent: @Composable () -> Unit
 ) {
     LazyColumn(modifier = modifier) {
@@ -89,7 +90,7 @@ fun UserList(
 @Composable
 fun UserItemBase(
     modifier: Modifier = Modifier,
-    user: UiUser,
+    user: UiUserSimpleData,
     content: @Composable () -> Unit
 ) {
     Row(modifier = modifier) {

@@ -23,7 +23,7 @@ fun FriendsFragment(
     UserListSearchable(
         users = friends.value,
         onSearchButtonClick = { string ->
-            // viewModel.search(string)
+            viewModel.filterFriends(string)
         },
         placeholder = placeholder
     ) {
