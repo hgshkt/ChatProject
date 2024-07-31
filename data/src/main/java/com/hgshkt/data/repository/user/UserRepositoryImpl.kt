@@ -76,4 +76,8 @@ class UserRepositoryImpl(
     override fun filterFriendsByQuery(query: String): List<UserSimpleData> {
         return userFilter.filterByQuery(query)
     }
+
+    override suspend fun sendFriendRequest(from: String, to: String) {
+        remoteUserStorage.sendFriendRequest(from, to)
+    }
 }

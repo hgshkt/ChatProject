@@ -8,6 +8,7 @@ import com.hgshkt.domain.usecases.friends.FilterFriendsByQueryUseCase
 import com.hgshkt.domain.usecases.friends.GetRecommendedUsersUseCase
 import com.hgshkt.domain.usecases.friends.GetUserFriendsUseCase
 import com.hgshkt.domain.usecases.friends.SearchUsersByQueryUseCase
+import com.hgshkt.domain.usecases.friends.SendFriendRequestUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -19,7 +20,8 @@ class FriendsViewModel @Inject constructor(
     private val getUserFriendsUseCase: GetUserFriendsUseCase,
     private val getRecommendedUsersUseCase: GetRecommendedUsersUseCase,
     private val filterFriendsByQueryUseCase: FilterFriendsByQueryUseCase,
-    private val searchUsersByQueryUseCase: SearchUsersByQueryUseCase
+    private val searchUsersByQueryUseCase: SearchUsersByQueryUseCase,
+    private val sendFriendRequestUseCase: SendFriendRequestUseCase
 ) : ViewModel() {
 
     private val _friendsFlow = MutableStateFlow<List<UiUserSimpleData>>(emptyList())
@@ -50,7 +52,9 @@ class FriendsViewModel @Inject constructor(
     }
 
     fun filterFriends(query: String) {
-        _friendsFlow.value = filterFriendsByQueryUseCase.execute(query).map { it.toUi() }
+        viewModelScope.launch {
+            _friendsFlow.value = filterFriendsByQueryUseCase.execute(query).map { it.toUi() }
+        }
     }
 
     fun search(query: String) {
@@ -62,6 +66,12 @@ class FriendsViewModel @Inject constructor(
                     State.Error(message)
                 }
             }
+        }
+    }
+
+    fun sendFriendRequest(id: String) {
+        viewModelScope.launch {
+            sendFriendRequestUseCase.execute(id)
         }
     }
 

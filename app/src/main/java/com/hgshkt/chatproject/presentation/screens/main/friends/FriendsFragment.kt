@@ -1,4 +1,4 @@
-package com.hgshkt.chatproject.presentation.screens.main.friends.fragments.friends
+package com.hgshkt.chatproject.presentation.screens.main.friends
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Delete
@@ -9,8 +9,6 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.hgshkt.chatproject.presentation.screens.main.friends.FriendsViewModel
-import com.hgshkt.chatproject.presentation.screens.main.friends.UserListSearchable
 
 private const val placeholder = "Enter user name"
 

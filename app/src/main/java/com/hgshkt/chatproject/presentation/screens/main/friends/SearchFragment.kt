@@ -1,4 +1,4 @@
-package com.hgshkt.chatproject.presentation.screens.main.friends.fragments.search
+package com.hgshkt.chatproject.presentation.screens.main.friends
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
@@ -11,8 +11,6 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.hgshkt.chatproject.presentation.data.model.UiUserSimpleData
-import com.hgshkt.chatproject.presentation.screens.main.friends.FriendsViewModel
-import com.hgshkt.chatproject.presentation.screens.main.friends.UserListSearchable
 
 private const val placeholder = "Enter user name"
 
@@ -29,9 +27,15 @@ fun SearchFragment(
             }
 
             is FriendsViewModel.State.Success -> {
-                SuccessScreenState(users) { query ->
-                    viewModel.search(query)
-                }
+                SuccessScreenState(
+                    users = users,
+                    onSearchButtonClick = {query ->
+                        viewModel.search(query)
+                    },
+                    addButtonClick = { user ->
+                        viewModel.sendFriendRequest(user.id)
+                    }
+                )
             }
 
             is FriendsViewModel.State.Error -> {
@@ -53,18 +57,18 @@ fun ErrorScreenState(message: String) {
 @Composable
 fun SuccessScreenState(
     users: List<UiUserSimpleData>,
-    onSearchButtonClick: (String) -> Unit
+    onSearchButtonClick: (String) -> Unit,
+    addButtonClick: (UiUserSimpleData) -> Unit
 ) {
     UserListSearchable(
         users = users,
         onSearchButtonClick = { string ->
             onSearchButtonClick(string)
-
         },
         placeholder = placeholder
-    ) {
+    ) { user ->
         AddButton {
-            // viewModel.add()
+            addButtonClick(user)
         }
     }
 }

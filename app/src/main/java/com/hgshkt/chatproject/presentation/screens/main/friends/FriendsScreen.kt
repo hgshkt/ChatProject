@@ -22,12 +22,10 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.hgshkt.chatproject.presentation.data.model.UiUser
 import com.hgshkt.chatproject.presentation.data.model.UiUserSimpleData
 import com.hgshkt.chatproject.presentation.screens.main.SearchField
 import com.hgshkt.chatproject.presentation.screens.main.UserList
-import com.hgshkt.chatproject.presentation.screens.main.friends.fragments.friends.FriendsFragment
-import com.hgshkt.chatproject.presentation.screens.main.friends.fragments.search.SearchFragment
+import com.hgshkt.domain.model.UserSimpleData
 
 private val items = listOf(
     Item.Search,
@@ -102,7 +100,7 @@ fun UserListSearchable(
     users: List<UiUserSimpleData>,
     placeholder: String = "Search user",
     onSearchButtonClick: (String) -> Unit,
-    additionalContent: @Composable () -> Unit,
+    additionalContent: @Composable (UiUserSimpleData) -> Unit,
 ) {
     var value by rememberSaveable {
         mutableStateOf("")
@@ -119,8 +117,8 @@ fun UserListSearchable(
                 onSearchButtonClick(value)
             }
         )
-        UserList(users = users) {
-            additionalContent()
+        UserList(users = users) { user->
+            additionalContent(user)
         }
     }
 }

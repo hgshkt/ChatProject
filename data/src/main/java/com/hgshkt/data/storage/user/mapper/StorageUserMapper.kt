@@ -6,6 +6,7 @@ import com.hgshkt.data.remote.api.user.reponse.ApiUserListResponse
 import com.hgshkt.data.remote.api.user.reponse.ApiUserResponse
 import com.hgshkt.data.storage.StorageResult
 import com.hgshkt.data.storage.user.model.StorageUser
+import com.hgshkt.data.storage.user.response.FriendInviteResponse
 
 fun ApiUserResponse.toStorage(): StorageResult<StorageUser> {
     return if (success)
@@ -19,6 +20,12 @@ fun ApiUserListResponse.toStorage(): StorageResult<List<StorageUser>> {
         StorageResult.Success(jsonUsers!!.map { user -> user.toStorage() })
     else
         StorageResult.Failure(message)
+}
+
+fun ApiFriendInviteResponse.toStorage(): StorageResult<FriendInviteResponse> {
+    return if (success)
+        StorageResult.Success(FriendInviteResponse(true))
+    else StorageResult.Failure()
 }
 
 fun JsonUser.toStorage(): StorageUser {

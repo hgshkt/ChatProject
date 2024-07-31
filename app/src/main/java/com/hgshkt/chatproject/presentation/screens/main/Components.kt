@@ -16,6 +16,7 @@ import coil.compose.AsyncImage
 import com.hgshkt.chatproject.R
 import com.hgshkt.chatproject.presentation.data.model.UiUser
 import com.hgshkt.chatproject.presentation.data.model.UiUserSimpleData
+import com.hgshkt.domain.model.UserSimpleData
 
 @Composable
 fun UserAvatar(
@@ -76,12 +77,13 @@ fun SearchField(
 fun UserList(
     modifier: Modifier = Modifier,
     users: List<UiUserSimpleData>,
-    additionalContent: @Composable () -> Unit
+    additionalContent: @Composable (user: UiUserSimpleData) -> Unit
 ) {
     LazyColumn(modifier = modifier) {
         items(count = users.size) { index ->
-            UserItemBase(user = users[index]) {
-                additionalContent()
+            val user = users[index]
+            UserItemBase(user = user) {
+                additionalContent(user)
             }
         }
     }
