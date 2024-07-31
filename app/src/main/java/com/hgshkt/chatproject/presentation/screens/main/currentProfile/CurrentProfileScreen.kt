@@ -46,12 +46,12 @@ fun CurrentProfileScreen(
 }
 
 @Composable
-fun LoadingScreenState() {
+private fun LoadingScreenState() {
     Text("Loading...")
 }
 
 @Composable
-fun ErrorScreenState(message: String) {
+private fun ErrorScreenState(message: String) {
     Text(message)
 }
 
