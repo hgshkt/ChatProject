@@ -6,7 +6,7 @@ import com.hgshkt.data.storage.StorageResult
 import com.hgshkt.data.storage.user.interfaces.LocalUserStorage
 import com.hgshkt.data.storage.user.mapper.toLocalDb
 import com.hgshkt.data.storage.user.mapper.toStorage
-import com.hgshkt.data.storage.user.model.StorageUser
+import com.hgshkt.data.storage.user.model.StorageSimpleUser
 
 class LocalUserStorageImpl(
     private val userDao: UserDao,
@@ -16,14 +16,14 @@ class LocalUserStorageImpl(
         return prefs.getCurrentUserId()
     }
 
-    override fun getUserById(id: String): StorageResult<StorageUser> {
+    override fun getUserById(id: String): StorageResult<StorageSimpleUser> {
         userDao.getById(id)?.let {
             return StorageResult.Success(it.toStorage())
         }
         return StorageResult.Failure()
     }
 
-    override fun saveUser(user: StorageUser) {
+    override fun saveUser(user: StorageSimpleUser) {
         userDao.insert(user.toLocalDb())
     }
 }

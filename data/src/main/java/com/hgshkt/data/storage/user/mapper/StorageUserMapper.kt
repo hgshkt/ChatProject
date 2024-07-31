@@ -1,56 +1,55 @@
 package com.hgshkt.data.storage.user.mapper
 
 import com.hgshkt.data.local.user.model.LocalDbUser
+import com.hgshkt.data.remote.api.user.model.JsonSimpleUser
 import com.hgshkt.data.remote.api.user.model.JsonUser
 import com.hgshkt.data.remote.api.user.reponse.ApiUserListResponse
 import com.hgshkt.data.remote.api.user.reponse.ApiUserResponse
 import com.hgshkt.data.storage.StorageResult
-import com.hgshkt.data.storage.user.model.StorageUser
-import com.hgshkt.data.storage.user.response.FriendInviteResponse
+import com.hgshkt.data.storage.user.model.StorageSimpleUser
 
-fun ApiUserResponse.toStorage(): StorageResult<StorageUser> {
+fun ApiUserResponse.toStorage(): StorageResult<StorageSimpleUser> {
     return if (success)
         StorageResult.Success(jsonUser!!.toStorage())
     else
         StorageResult.Failure(message)
 }
 
-fun ApiUserListResponse.toStorage(): StorageResult<List<StorageUser>> {
+fun ApiUserListResponse.toStorage(): StorageResult<List<StorageSimpleUser>> {
     return if (success)
         StorageResult.Success(jsonUsers!!.map { user -> user.toStorage() })
     else
         StorageResult.Failure(message)
 }
 
-fun ApiFriendInviteResponse.toStorage(): StorageResult<FriendInviteResponse> {
-    return if (success)
-        StorageResult.Success(FriendInviteResponse(true))
-    else StorageResult.Failure()
-}
-
-fun JsonUser.toStorage(): StorageUser {
-    return StorageUser(
+fun JsonSimpleUser.toStorage(): StorageSimpleUser {
+    return StorageSimpleUser(
         id = id,
         name = name,
-        avatarUrl = avatarUrl,
-        backgroundUrl = backgroundUrl
+        avatarUrl = avatarUrl
     )
 }
 
-fun LocalDbUser.toStorage(): StorageUser {
-    return StorageUser(
+fun JsonUser.toStorage(): StorageSimpleUser {
+    return StorageSimpleUser(
         id = id,
         name = name,
-        avatarUrl = avatarUrl,
-        backgroundUrl = backgroundUrl
+        avatarUrl = avatarUrl
     )
 }
 
-fun StorageUser.toLocalDb(): LocalDbUser {
+fun LocalDbUser.toStorage(): StorageSimpleUser {
+    return StorageSimpleUser(
+        id = id,
+        name = name,
+        avatarUrl = avatarUrl
+    )
+}
+
+fun StorageSimpleUser.toLocalDb(): LocalDbUser {
     return LocalDbUser(
         id = id,
         name = name,
-        avatarUrl = avatarUrl,
-        backgroundUrl = backgroundUrl
+        avatarUrl = avatarUrl
     )
 }

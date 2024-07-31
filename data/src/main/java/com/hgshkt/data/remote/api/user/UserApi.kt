@@ -7,8 +7,6 @@ import com.hgshkt.data.remote.api.user.reponse.ApiUserResponse
 import com.hgshkt.data.remote.api.user.reponse.ApiUserListResponse
 import com.hgshkt.data.remote.api.user.request.LoginRequest
 import com.hgshkt.data.remote.api.user.request.ApiRegistrationRequest
-import com.hgshkt.data.storage.StorageResult
-import com.hgshkt.data.storage.user.response.FriendInviteResponse
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
@@ -34,5 +32,5 @@ interface UserApi {
     suspend fun searchUsers(query: String): ApiUserListResponse
 
     @POST("")
-    fun sendFriendRequest(from: String, to: String): ApiFriendInviteResponse
+    fun sendFriendRequest(from: String, to: String)
 }
