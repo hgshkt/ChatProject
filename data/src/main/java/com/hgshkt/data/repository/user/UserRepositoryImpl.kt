@@ -76,4 +76,9 @@ class UserRepositoryImpl(
     override fun filterFriendsByQuery(query: String): List<UserSimpleData> {
         return userFilter.filterByQuery(query)
     }
+
+    override suspend fun sendFriendInvite(id: String) {
+        val currentUserId = localUserStorage.getCurrentUserId()
+        remoteUserStorage.sendFriendInvite(from = currentUserId, to = id)
+    }
 }

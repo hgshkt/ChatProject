@@ -59,7 +59,9 @@ private val useCases: FriendsScreenUseCases
     }
 
     fun sendInvite(id: String) {
-        useCases.sendInvite.execute(id)
+        viewModelScope.launch {
+            useCases.sendInvite.execute(id)
+        }
     }
 
     sealed class State {

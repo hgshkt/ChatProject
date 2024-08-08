@@ -8,4 +8,5 @@ interface RemoteUserStorage {
     suspend fun getFriendsFor(id: String): StorageResult<List<StorageUser>>
     suspend fun getRecommended(id: String): StorageResult<List<StorageUser>>
     suspend fun getUsersByQuery(query: String): StorageResult<List<StorageUser>>
+    suspend fun sendFriendInvite(from: String, to: String)
 }

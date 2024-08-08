@@ -5,7 +5,7 @@ import com.hgshkt.domain.data.repository.UserRepository
 class SendFriendInviteUseCase(
     private val userRepository: UserRepository
 ) {
-    fun execute(id: String) {
+    suspend fun execute(id: String) {
         userRepository.sendFriendInvite(id)
     }
 }

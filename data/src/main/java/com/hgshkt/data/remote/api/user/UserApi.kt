@@ -10,6 +10,7 @@ import com.hgshkt.data.remote.api.user.request.ApiRegistrationRequest
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.PUT
 
 
 interface UserApi {
@@ -30,4 +31,7 @@ interface UserApi {
 
     @GET("")
     suspend fun searchUsers(query: String): ApiUserListResponse
+
+    @PUT("")
+    suspend fun sendFriendInvite(from: String, to: String)
 }

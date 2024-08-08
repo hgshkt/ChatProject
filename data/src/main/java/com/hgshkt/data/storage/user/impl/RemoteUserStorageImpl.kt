@@ -24,4 +24,8 @@ class RemoteUserStorageImpl(
     override suspend fun getUsersByQuery(query: String): StorageResult<List<StorageUser>> {
         return api.searchUsers(query).toStorage()
     }
+
+    override suspend fun sendFriendInvite(from: String, to: String) {
+        api.sendFriendInvite(from, to)
+    }
 }
