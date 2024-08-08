@@ -85,12 +85,14 @@ object RepositoryImplModule {
     fun provideMessageRepositoryImpl(
         localMessageStorage: LocalMessageStorage,
         remoteMessageStorage: RemoteMessageStorage,
-        webSocketService: WebSocketService
+        webSocketService: WebSocketService,
+        @Named(CURRENT_USER_ID) currentUserId: String
     ): MessageRepositoryImpl {
         return MessageRepositoryImpl(
             localMessageStorage = localMessageStorage,
             remoteMessageStorage = remoteMessageStorage,
-            webSocketService = webSocketService
+            webSocketService = webSocketService,
+            currentUserId = currentUserId
         )
     }
 }

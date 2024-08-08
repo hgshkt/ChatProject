@@ -14,7 +14,8 @@ import kotlinx.coroutines.flow.flow
 class MessageRepositoryImpl(
     private val localMessageStorage: LocalMessageStorage,
     private val remoteMessageStorage: RemoteMessageStorage,
-    private val webSocketService: WebSocketService
+    private val webSocketService: WebSocketService,
+    private val currentUserId: String
 ) : MessageRepository {
 
     private val _messages = MutableStateFlow<List<Message>>(emptyList())
@@ -40,7 +41,7 @@ class MessageRepositoryImpl(
         _messages.value += message
     }
 
-    override suspend fun sendMessage(chatId: String, text: String, userId: String) {
-        remoteMessageStorage.sendMessage(chatId, text, userId)
+    override suspend fun sendMessage(chatId: String, text: String) {
+        remoteMessageStorage.sendMessage(chatId, text, currentUserId)
     }
 }

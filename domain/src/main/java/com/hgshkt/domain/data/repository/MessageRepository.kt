@@ -9,8 +9,5 @@ interface MessageRepository {
 
     suspend fun loadChatMessages(chatId: String): Flow<List<Message>>
 
-    /**
-     * @param userId is id of current user
-     */
-    suspend fun sendMessage(chatId: String, text: String, userId: String)
+    suspend fun sendMessage(chatId: String, text: String)
 }
