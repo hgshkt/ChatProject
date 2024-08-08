@@ -11,13 +11,21 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
+import javax.inject.Named
 import javax.inject.Singleton
+
+const val CURRENT_USER_ID = "CURRENT_USER_ID"
 
 @Module
 @InstallIn(SingletonComponent::class)
 object DataModuleImpl {
 
     @Provides
+    @Named(CURRENT_USER_ID)
+    fun currentUserId(prefs: SharedPrefs): String {
+        return prefs.getCurrentUserId()
+    }
+
     @Singleton
     fun provideOkHttpClient() = OkHttpClient()
 

@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.hgshkt.chatproject.presentation.data.model.UiUser
 import com.hgshkt.chatproject.presentation.data.toUi
-import com.hgshkt.domain.usecases.GetUserByIdUseCase
+import com.hgshkt.domain.usecases.profile.GetUserByIdUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject

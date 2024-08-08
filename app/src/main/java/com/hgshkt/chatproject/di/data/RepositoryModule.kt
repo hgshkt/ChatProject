@@ -1,5 +1,6 @@
 package com.hgshkt.chatproject.di.data
 
+import com.hgshkt.data.filter.user.UserFilter
 import com.hgshkt.data.repository.chat.ChatRepositoryImpl
 import com.hgshkt.data.repository.message.MessageRepositoryImpl
 import com.hgshkt.data.repository.user.UserRepositoryImpl
@@ -19,8 +20,9 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import javax.inject.Inject
+import javax.inject.Named
 import javax.inject.Singleton
-
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -50,9 +52,16 @@ object RepositoryImplModule {
     @Singleton
     fun provideUserRepositoryImpl(
         remoteUserStorage: RemoteUserStorage,
-        localUserStorage: LocalUserStorage
+        localUserStorage: LocalUserStorage,
+        userFilter: UserFilter,
+        @Named(CURRENT_USER_ID) currentUserId: String
     ): UserRepositoryImpl {
-        return UserRepositoryImpl(remoteUserStorage, localUserStorage)
+        return UserRepositoryImpl(
+            remoteUserStorage = remoteUserStorage,
+            localUserStorage = localUserStorage,
+            userFilter = userFilter,
+            currentUserId = currentUserId
+        )
     }
 
     @Provides

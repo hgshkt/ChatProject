@@ -9,7 +9,6 @@ class GetRecommendedUsersUseCase(
     private val userRepository: UserRepository
 ) {
     suspend fun execute(): Resultc<List<UserSimpleData>> {
-        val id = userRepository.getCurrentUserId()
-        return userRepository.getRecommended(id)
+        return userRepository.getRecommended()
     }
 }

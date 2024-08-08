@@ -6,7 +6,6 @@ import com.hgshkt.chatproject.presentation.data.model.UiUser
 import com.hgshkt.chatproject.presentation.data.model.UiUserSimpleData
 import com.hgshkt.chatproject.presentation.data.toUi
 import com.hgshkt.domain.data.repository.UserRepository.LoadUserState
-import com.hgshkt.domain.usecases.currentProfile.FlowCurrentUserUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

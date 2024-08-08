@@ -7,9 +7,9 @@ import kotlinx.coroutines.flow.Flow
 
 interface UserRepository {
     fun getUserById(id: String): Flow<LoadUserState>
-    fun getCurrentUserId(): String
-    suspend fun getFriendsFor(id: String): Resultc<List<UserSimpleData>>
-    suspend fun getRecommended(id: String): Resultc<List<UserSimpleData>>
+    fun getCurrentUser(): Flow<LoadUserState>
+    suspend fun getRecommended(): Resultc<List<UserSimpleData>>
+    suspend fun getFriends(): Resultc<List<UserSimpleData>>
     suspend fun getUsersByQuery(query: String): Resultc<List<UserSimpleData>>
     fun filterFriendsByQuery(query: String): List<UserSimpleData>
     suspend fun sendFriendInvite(id: String)

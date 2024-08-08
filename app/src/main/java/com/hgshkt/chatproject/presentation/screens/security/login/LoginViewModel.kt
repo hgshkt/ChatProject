@@ -3,7 +3,6 @@ package com.hgshkt.chatproject.presentation.screens.security.login
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.hgshkt.domain.security.LoginService
-import com.hgshkt.domain.usecases.secutity.LoginUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow

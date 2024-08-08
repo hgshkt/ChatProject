@@ -8,15 +8,19 @@ import com.hgshkt.data.storage.user.interfaces.RemoteUserStorage
 import com.hgshkt.domain.data.Resultc
 import com.hgshkt.domain.data.repository.UserRepository
 import com.hgshkt.domain.data.repository.UserRepository.LoadUserState
-import com.hgshkt.domain.model.User
 import com.hgshkt.domain.model.UserSimpleData
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
 class UserRepositoryImpl(
     private val remoteUserStorage: RemoteUserStorage,
     private val localUserStorage: LocalUserStorage,
-    private val userFilter: UserFilter
+    private val userFilter: UserFilter,
+    private val currentUserId: String
 ) : UserRepository {
+    override fun getCurrentUser(): Flow<LoadUserState> {
+        return getUserById(currentUserId)
+    }
 
     override fun getUserById(id: String) = flow {
 
@@ -42,12 +46,8 @@ class UserRepositoryImpl(
         }
     }
 
-    override fun getCurrentUserId(): String {
-        return localUserStorage.getCurrentUserId()
-    }
-
-    override suspend fun getFriendsFor(id: String): Resultc<List<UserSimpleData>> {
-        remoteUserStorage.getFriendsFor(id).apply {
+    override suspend fun getFriends(): Resultc<List<UserSimpleData>> {
+        remoteUserStorage.getFriendsFor(currentUserId).apply {
             if(success) {
                 return Resultc.Success(value!!.map { user -> user.toDomainSimple() })
             }
@@ -55,8 +55,8 @@ class UserRepositoryImpl(
         return Resultc.Failure()
     }
 
-    override suspend fun getRecommended(id: String): Resultc<List<UserSimpleData>> {
-        remoteUserStorage.getRecommended(id).apply {
+    override suspend fun getRecommended(): Resultc<List<UserSimpleData>> {
+        remoteUserStorage.getRecommended(currentUserId).apply {
             if(success) {
                 return Resultc.Success(value!!.map { user -> user.toDomainSimple() })
             }
@@ -78,12 +78,10 @@ class UserRepositoryImpl(
     }
 
     override suspend fun sendFriendInvite(id: String) {
-        val currentUserId = localUserStorage.getCurrentUserId()
         remoteUserStorage.sendFriendInvite(from = currentUserId, to = id)
     }
 
     override suspend fun deleteFriend(id: String) {
-        val currentUserId = localUserStorage.getCurrentUserId()
         remoteUserStorage.deleteFriend(currentUserId, id)
     }
 }
