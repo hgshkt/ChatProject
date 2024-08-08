@@ -26,9 +26,9 @@ fun FriendsFragment(
             viewModel.filterFriends(string)
         },
         placeholder = placeholder
-    ) {
+    ) { user ->
         DeleteButton {
-            // viewModel.delete()
+            viewModel.delete(user.id)
         }
     }
     LaunchedEffect(key1 = "view model fetch friends") {

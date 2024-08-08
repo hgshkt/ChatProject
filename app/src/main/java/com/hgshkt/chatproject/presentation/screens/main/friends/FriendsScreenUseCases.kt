@@ -1,5 +1,6 @@
 package com.hgshkt.chatproject.presentation.screens.main.friends
 
+import com.hgshkt.domain.usecases.friends.DeleteFriendUseCase
 import com.hgshkt.domain.usecases.friends.FilterFriendsByQueryUseCase
 import com.hgshkt.domain.usecases.friends.GetRecommendedUsersUseCase
 import com.hgshkt.domain.usecases.friends.GetUserFriendsUseCase
@@ -11,5 +12,6 @@ data class FriendsScreenUseCases(
     val getRecommended: GetRecommendedUsersUseCase,
     val filterFriendsByQuery: FilterFriendsByQueryUseCase,
     val searchUsersByQuery: SearchUsersByQueryUseCase,
-    val sendInvite: SendFriendInviteUseCase
+    val sendInvite: SendFriendInviteUseCase,
+    val delete: DeleteFriendUseCase
 )

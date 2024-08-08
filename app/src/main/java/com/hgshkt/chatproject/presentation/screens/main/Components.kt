@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
+import androidx.compose.material3.Card
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
@@ -40,7 +41,7 @@ fun ProfileBackground(
         model = url,
         contentDescription = "Profile background",
         modifier = modifier,
-        error = painterResource(R.drawable.backgrounf_error),
+        error = painterResource(R.drawable.background_error),
         placeholder = painterResource(R.drawable.loading_background_avatar),
         fallback = painterResource(R.drawable.default_background)
     )

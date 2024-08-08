@@ -81,4 +81,9 @@ class UserRepositoryImpl(
         val currentUserId = localUserStorage.getCurrentUserId()
         remoteUserStorage.sendFriendInvite(from = currentUserId, to = id)
     }
+
+    override suspend fun deleteFriend(id: String) {
+        val currentUserId = localUserStorage.getCurrentUserId()
+        remoteUserStorage.deleteFriend(currentUserId, id)
+    }
 }

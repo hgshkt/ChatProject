@@ -13,6 +13,7 @@ interface UserRepository {
     suspend fun getUsersByQuery(query: String): Resultc<List<UserSimpleData>>
     fun filterFriendsByQuery(query: String): List<UserSimpleData>
     suspend fun sendFriendInvite(id: String)
+    suspend fun deleteFriend(id: String)
 
     sealed class LoadUserState {
         data class LocalSuccess(val simpleData: UserSimpleData): LoadUserState()

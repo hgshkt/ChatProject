@@ -8,6 +8,7 @@ import com.hgshkt.data.remote.api.user.reponse.ApiUserListResponse
 import com.hgshkt.data.remote.api.user.request.LoginRequest
 import com.hgshkt.data.remote.api.user.request.ApiRegistrationRequest
 import retrofit2.http.Body
+import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.PUT
@@ -34,4 +35,7 @@ interface UserApi {
 
     @PUT("")
     suspend fun sendFriendInvite(from: String, to: String)
+
+    @DELETE
+    fun deleteFriend(currentUserId: String, deletedUserId: String)
 }

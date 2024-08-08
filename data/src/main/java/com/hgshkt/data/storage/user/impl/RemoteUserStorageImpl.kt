@@ -28,4 +28,8 @@ class RemoteUserStorageImpl(
     override suspend fun sendFriendInvite(from: String, to: String) {
         api.sendFriendInvite(from, to)
     }
+
+    override suspend fun deleteFriend(currentUserId: String, deletedUserId: String) {
+        api.deleteFriend(currentUserId, deletedUserId)
+    }
 }

@@ -12,7 +12,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class FriendsViewModel @Inject constructor(
-private val useCases: FriendsScreenUseCases
+    private val useCases: FriendsScreenUseCases
 ) : ViewModel() {
 
     private val _friendsFlow = MutableStateFlow<List<UiUserSimpleData>>(emptyList())
@@ -50,7 +50,7 @@ private val useCases: FriendsScreenUseCases
         viewModelScope.launch {
             useCases.searchUsersByQuery.execute(query).apply {
                 _searchFragmentState.value = if (success) {
-                     State.Success(value!!.map { it.toUi() })
+                    State.Success(value!!.map { it.toUi() })
                 } else {
                     State.Error(message)
                 }
@@ -61,6 +61,19 @@ private val useCases: FriendsScreenUseCases
     fun sendInvite(id: String) {
         viewModelScope.launch {
             useCases.sendInvite.execute(id)
+        }
+    }
+
+    fun delete(id: String) {
+        viewModelScope.launch {
+            _friendsFlow.value = _friendsFlow.value
+                .toMutableList()
+                .apply {
+                    removeIf {
+                        it.id == id
+                    }
+                }
+            useCases.delete.execute(id)
         }
     }
 
