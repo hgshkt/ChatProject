@@ -102,7 +102,7 @@ fun UserListSearchable(
     users: List<UiUserSimpleData>,
     placeholder: String = "Search user",
     onSearchButtonClick: (String) -> Unit,
-    additionalContent: @Composable () -> Unit,
+    additionalContent: @Composable (user: UiUserSimpleData) -> Unit,
 ) {
     var value by rememberSaveable {
         mutableStateOf("")
@@ -119,8 +119,8 @@ fun UserListSearchable(
                 onSearchButtonClick(value)
             }
         )
-        UserList(users = users) {
-            additionalContent()
+        UserList(users = users) { user ->
+            additionalContent(user)
         }
     }
 }

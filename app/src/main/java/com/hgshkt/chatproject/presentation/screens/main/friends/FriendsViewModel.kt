@@ -4,10 +4,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.hgshkt.chatproject.presentation.data.model.UiUserSimpleData
 import com.hgshkt.chatproject.presentation.data.toUi
-import com.hgshkt.domain.usecases.friends.FilterFriendsByQueryUseCase
-import com.hgshkt.domain.usecases.friends.GetRecommendedUsersUseCase
-import com.hgshkt.domain.usecases.friends.GetUserFriendsUseCase
-import com.hgshkt.domain.usecases.friends.SearchUsersByQueryUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -16,10 +12,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class FriendsViewModel @Inject constructor(
-    private val getUserFriendsUseCase: GetUserFriendsUseCase,
-    private val getRecommendedUsersUseCase: GetRecommendedUsersUseCase,
-    private val filterFriendsByQueryUseCase: FilterFriendsByQueryUseCase,
-    private val searchUsersByQueryUseCase: SearchUsersByQueryUseCase
+private val useCases: FriendsScreenUseCases
 ) : ViewModel() {
 
     private val _friendsFlow = MutableStateFlow<List<UiUserSimpleData>>(emptyList())
@@ -30,7 +23,7 @@ class FriendsViewModel @Inject constructor(
 
     fun fetchFriends() {
         viewModelScope.launch {
-            val response = getUserFriendsUseCase.execute()
+            val response = useCases.getFriends.execute()
             if (response.success) {
                 _friendsFlow.value = response.value!!.map { it.toUi() }
             }
@@ -39,7 +32,7 @@ class FriendsViewModel @Inject constructor(
 
     fun fetchUsers() {
         viewModelScope.launch {
-            getRecommendedUsersUseCase.execute().apply {
+            useCases.getRecommended.execute().apply {
                 _searchFragmentState.value = if (success) {
                     State.Success(value!!.map { it.toUi() })
                 } else {
@@ -50,12 +43,12 @@ class FriendsViewModel @Inject constructor(
     }
 
     fun filterFriends(query: String) {
-        _friendsFlow.value = filterFriendsByQueryUseCase.execute(query).map { it.toUi() }
+        _friendsFlow.value = useCases.filterFriendsByQuery.execute(query).map { it.toUi() }
     }
 
     fun search(query: String) {
         viewModelScope.launch {
-            searchUsersByQueryUseCase.execute(query).apply {
+            useCases.searchUsersByQuery.execute(query).apply {
                 _searchFragmentState.value = if (success) {
                      State.Success(value!!.map { it.toUi() })
                 } else {
@@ -63,6 +56,10 @@ class FriendsViewModel @Inject constructor(
                 }
             }
         }
+    }
+
+    fun sendInvite(id: String) {
+        useCases.sendInvite.execute(id)
     }
 
     sealed class State {

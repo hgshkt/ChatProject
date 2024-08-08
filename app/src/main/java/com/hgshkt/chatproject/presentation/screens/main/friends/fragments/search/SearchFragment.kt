@@ -29,9 +29,15 @@ fun SearchFragment(
             }
 
             is FriendsViewModel.State.Success -> {
-                SuccessScreenState(users) { query ->
-                    viewModel.search(query)
-                }
+                SuccessScreenState(
+                    users = users,
+                    onSearchButtonClick = { query ->
+                        viewModel.search(query)
+                    },
+                    addButtonClick = { user ->
+                        viewModel.sendInvite(user.id)
+                    }
+                )
             }
 
             is FriendsViewModel.State.Error -> {
@@ -53,18 +59,18 @@ fun ErrorScreenState(message: String) {
 @Composable
 fun SuccessScreenState(
     users: List<UiUserSimpleData>,
-    onSearchButtonClick: (String) -> Unit
+    onSearchButtonClick: (String) -> Unit,
+    addButtonClick: (user: UiUserSimpleData) -> Unit
 ) {
     UserListSearchable(
         users = users,
         onSearchButtonClick = { string ->
             onSearchButtonClick(string)
-
         },
         placeholder = placeholder
-    ) {
+    ) { user ->
         AddButton {
-            // viewModel.add()
+            addButtonClick(user)
         }
     }
 }
