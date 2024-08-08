@@ -8,7 +8,6 @@ class SendMessageUseCase(
     private val userRepository: UserRepository
 ) {
     suspend fun execute(chatId: String, text: String) {
-        val currentUserId = userRepository.getCurrentUserId()
-        messageRepository.sendMessage(chatId, text, currentUserId)
+        messageRepository.sendMessage(chatId, text)
     }
 }
