@@ -8,7 +8,6 @@ class FlowCurrentUserUseCase(
     private val repository: UserRepository
 ) {
     fun execute(): Flow<LoadUserState> {
-        val currentUserId = repository.getCurrentUserId()
-        return repository.getUserById(currentUserId)
+        return repository.getCurrentUser()
     }
 }

@@ -1,4 +1,4 @@
-package com.hgshkt.domain.usecases
+package com.hgshkt.domain.usecases.profile
 
 import com.hgshkt.domain.data.repository.UserRepository
 import com.hgshkt.domain.data.repository.UserRepository.UserResponse
@@ -9,6 +9,6 @@ class GetUserByIdUseCase(
     suspend fun execute(
         id: String
     ): UserResponse {
-        return userRepository.getUserById(id)
+        return userRepository.getCurrentUser(id)
     }
 }
