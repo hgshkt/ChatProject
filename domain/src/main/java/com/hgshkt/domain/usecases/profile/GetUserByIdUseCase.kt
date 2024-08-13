@@ -1,14 +1,14 @@
 package com.hgshkt.domain.usecases.profile
 
 import com.hgshkt.domain.data.repository.UserRepository
-import com.hgshkt.domain.data.repository.UserRepository.UserResponse
+import kotlinx.coroutines.flow.Flow
 
 class GetUserByIdUseCase(
     private val userRepository: UserRepository
 ) {
-    suspend fun execute(
+    fun execute(
         id: String
-    ): UserResponse {
-        return userRepository.getCurrentUser(id)
+    ): Flow<UserRepository.LoadUserState> {
+        return userRepository.getUserById(id)
     }
 }
